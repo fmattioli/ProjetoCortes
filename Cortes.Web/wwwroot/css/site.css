@@ -1,0 +1,8 @@
+﻿body {
+    background-image: url("https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjJ8fGJhcmJlcnxlbnwwfHwwfHw%3D&w=1000&q=80");
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    
+    background-size: cover;
+}

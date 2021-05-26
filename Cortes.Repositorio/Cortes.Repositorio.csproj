@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cortes.Dominio\Cortes.Dominio.csproj" />
+    <ProjectReference Include="..\Cortes.Infra\Cortes.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

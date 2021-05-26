@@ -1,0 +1,12 @@
+C:\BackEnd\Cortes\Cortes.Infra\bin\Debug\net5.0\Cortes.Infra.deps.json
+C:\BackEnd\Cortes\Cortes.Infra\bin\Debug\net5.0\Cortes.Infra.dll
+C:\BackEnd\Cortes\Cortes.Infra\bin\Debug\net5.0\ref\Cortes.Infra.dll
+C:\BackEnd\Cortes\Cortes.Infra\bin\Debug\net5.0\Cortes.Infra.pdb
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.csprojAssemblyReference.cache
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.AssemblyInfoInputs.cache
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.AssemblyInfo.cs
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.csproj.CoreCompileInputs.cache
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.dll
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\ref\Cortes.Infra.dll
+C:\BackEnd\Cortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.pdb

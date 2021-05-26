@@ -1,0 +1,8 @@
+{
+  "ConnectionStrings": {
+    "CortesBD": "Server=FMATTIOLI\\SQLEXPRESS;Database=QuickBuyDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "Secret": {
+    "Key": "fedaf7d8863b48e197b9287d492b708e"
+  }
+}

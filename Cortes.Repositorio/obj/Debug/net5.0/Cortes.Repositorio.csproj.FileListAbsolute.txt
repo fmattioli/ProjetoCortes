@@ -1,0 +1,17 @@
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\Cortes.Repositorio.deps.json
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\Cortes.Repositorio.dll
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\ref\Cortes.Repositorio.dll
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\Cortes.Repositorio.pdb
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\Cortes.Dominio.dll
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\Cortes.Infra.dll
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\Cortes.Dominio.pdb
+C:\BackEnd\Cortes\Cortes.Repositorio\bin\Debug\net5.0\Cortes.Infra.pdb
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.csprojAssemblyReference.cache
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.GeneratedMSBuildEditorConfig.editorconfig
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.AssemblyInfoInputs.cache
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.AssemblyInfo.cs
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.csproj.CoreCompileInputs.cache
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.csproj.CopyComplete
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.dll
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\ref\Cortes.Repositorio.dll
+C:\BackEnd\Cortes\Cortes.Repositorio\obj\Debug\net5.0\Cortes.Repositorio.pdb

@@ -1,0 +1,12 @@
+C:\BackEnd\Cortes\Cortes.Dominio\bin\Debug\net5.0\Cortes.Dominio.deps.json
+C:\BackEnd\Cortes\Cortes.Dominio\bin\Debug\net5.0\Cortes.Dominio.dll
+C:\BackEnd\Cortes\Cortes.Dominio\bin\Debug\net5.0\ref\Cortes.Dominio.dll
+C:\BackEnd\Cortes\Cortes.Dominio\bin\Debug\net5.0\Cortes.Dominio.pdb
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.csprojAssemblyReference.cache
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.AssemblyInfoInputs.cache
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.AssemblyInfo.cs
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.csproj.CoreCompileInputs.cache
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.dll
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\ref\Cortes.Dominio.dll
+C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.pdb
