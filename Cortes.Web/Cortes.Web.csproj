@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cortes.Infra\Cortes.Infra.csproj" />
     <ProjectReference Include="..\Cortes.Repositorio\Cortes.Repositorio.csproj" />
+    <ProjectReference Include="..\Cortes.Services\Cortes.Services.csproj" />
   </ItemGroup>
 
 </Project>

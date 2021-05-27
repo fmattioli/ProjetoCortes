@@ -1,11 +1,6 @@
-﻿using Cortes.Repositorio.Interfaces.IUsuarioRepositorio;
-using Cortes.Repositorio.Repositorios.UsuarioRepositorio;
-using Cortes.Web.Models;
-using Cortes.Web.ViewModels;
+﻿using Cortes.Services.Interfaces;
+using Cortes.Services.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Cortes.Web.Controllers
@@ -34,10 +29,11 @@ namespace Cortes.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registro(RegistroViewModel model)
+        public async Task<IActionResult> Registro(RegistroViewModel model, [FromServices] IUsuarioServico usuarioServices)
         {
             if (ModelState.IsValid)
             {
+                var resultado = await usuarioServices.CriarUsuario(model);
                 return View();
             }
             return View(model);

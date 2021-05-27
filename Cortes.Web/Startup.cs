@@ -1,4 +1,5 @@
 using Cortes.Repositorio.Config;
+using Cortes.Services.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,7 @@ namespace Cortes.Web
             services.AddControllersWithViews();
             services.AddSingleton<IConfiguration>(Configuration);
             services.ConfigurarRepositorios();
+            services.ConfigurarServicos();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

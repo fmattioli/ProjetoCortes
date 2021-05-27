@@ -1,4 +1,4 @@
-﻿@model Cortes.Web.ViewModels.RegistroViewModel
+﻿@model Cortes.Services.ViewModels.RegistroViewModel
 @{
     Layout = null;
     ViewData["Title"] = "Login";
@@ -31,38 +31,38 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <input asp-for="Nome" id="nome" type="text" class="validate">
-                                <label for="nome">Nome</label>
+                                <label asp-for="Nome">Nome</label>
                                 <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input asp-for="Email" id="email" type="email" class="validate">
-                                <label for="email">E-mail</label>
+                                <label asp-for="Email">E-mail</label>
                                 <span asp-validation-for="Email" class="red-text text-darken-4"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input asp-for="Senha" id="password" type="password" class="validate">
-                                <label for="password">Senha</label>
+                                <label asp-for="Senha">Senha</label>
                                 <span asp-validation-for="Senha" class="red-text text-darken-4"></span>
                             </div>
                             <div class="input-field col s6">
                                 <input asp-for="SenhaConfirmada" id="passwordconfirm" type="password" class="validate">
-                                <label for="passwordconfirm">Confirmar Senha</label>
+                                <label asp-for="SenhaConfirmada">Confirmar Senha</label>
                                 <span asp-validation-for="SenhaConfirmada" class="red-text text-darken-4"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input asp-for="Telefone" id="telefone" type="text" class="validate">
-                                <label for="telefone">Telefone</label>
+                                <label asp-for="Telefone">Telefone</label>
                                 <span asp-validation-for="Telefone" class="red-text text-darken-4"></span>
                             </div>
                             <div class="input-field col s6">
                                 <input asp-for="Endereco" id="endereco" type="text" class="validate">
-                                <label for="endereco">Endereço</label>
+                                <label asp-for="Endereco">Endereço</label>
                                 <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
                             </div>
                         </div>

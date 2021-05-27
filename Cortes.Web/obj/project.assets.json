@@ -2237,6 +2237,21 @@
         "runtime": {
           "bin/placeholder/Cortes.Repositorio.dll": {}
         }
+      },
+      "Cortes.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Cortes.Dominio": "1.0.0",
+          "Cortes.Repositorio": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Cortes.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Cortes.Services.dll": {}
+        }
       }
     }
   },
@@ -7181,12 +7196,18 @@
       "type": "project",
       "path": "../Cortes.Repositorio/Cortes.Repositorio.csproj",
       "msbuildProject": "../Cortes.Repositorio/Cortes.Repositorio.csproj"
+    },
+    "Cortes.Services/1.0.0": {
+      "type": "project",
+      "path": "../Cortes.Services/Cortes.Services.csproj",
+      "msbuildProject": "../Cortes.Services/Cortes.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Cortes.Infra >= 1.0.0",
       "Cortes.Repositorio >= 1.0.0",
+      "Cortes.Services >= 1.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2"
     ]
   },
@@ -7198,11 +7219,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj",
+      "projectUniqueName": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj",
       "projectName": "Cortes.Web",
-      "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj",
+      "projectPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\obj\\",
+      "outputPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -7225,11 +7246,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj": {
-              "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj"
+            "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj": {
+              "projectPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj"
             },
-            "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj": {
-              "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj"
+            "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj": {
+              "projectPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj"
+            },
+            "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Services\\Cortes.Services.csproj": {
+              "projectPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Services\\Cortes.Services.csproj"
             }
           }
         }

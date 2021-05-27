@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Repositorios\UsuarioRepositorio\UsuarioRepositorio.cs~RF383c1391.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cortes.Dominio\Cortes.Dominio.csproj" />
     <ProjectReference Include="..\Cortes.Infra\Cortes.Infra.csproj" />
   </ItemGroup>

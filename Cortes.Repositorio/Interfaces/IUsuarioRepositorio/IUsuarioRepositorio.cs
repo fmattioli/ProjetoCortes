@@ -9,9 +9,9 @@ namespace Cortes.Repositorio.Interfaces.IUsuarioRepositorio
 {
     public interface IUsuarioRepositorio
     {
-        Task<Usuario> Obter();
-        Task<Usuario> Atualizar();
-        Task<Usuario> Criar();
+        Task<Usuario> Obter(int id);
+        Task<Usuario> Atualizar(Usuario usuario);
+        Task<Usuario> Criar(Usuario usuario);
         Task<bool> Existe();
     }
 }

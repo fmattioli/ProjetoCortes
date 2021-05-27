@@ -1,0 +1,15 @@
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.csprojAssemblyReference.cache
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.AssemblyInfoInputs.cache
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.AssemblyInfo.cs
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.csproj.CoreCompileInputs.cache
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Services.deps.json
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Services.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\ref\Cortes.Services.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Services.pdb
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Dominio.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Dominio.pdb
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.csproj.CopyComplete
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\ref\Cortes.Services.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.pdb

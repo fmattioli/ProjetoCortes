@@ -13,21 +13,30 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
+        private StringBuilder SQL = new StringBuilder();
         private Generico generico;
         public UsuarioRepositorio([FromServices] IConfiguration config)
         {
             generico = new Generico(config);
         }
 
-        public async Task<Usuario> Atualizar()
+        public async Task<Usuario> Atualizar(Usuario usuario)
         {
             await generico.Select("");
             return new Usuario();
         }
 
-        public Task<Usuario> Criar()
+        public async Task<Usuario> Criar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await generico.RunSQLCommand(await generico.MontarInsert<Usuario>(usuario));
+                return usuario;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public Task<bool> Existe()
@@ -35,7 +44,7 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
             throw new NotImplementedException();
         }
 
-        public Task<Usuario> Obter()
+        public Task<Usuario> Obter(int id)
         {
             throw new NotImplementedException();
         }
