@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BackEnd\\Cortes\\Cortes.Web\\Cortes.Web.csproj": {}
+    "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj": {}
   },
   "projects": {
-    "C:\\BackEnd\\Cortes\\Cortes.Dominio\\Cortes.Dominio.csproj": {
+    "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Dominio\\Cortes.Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BackEnd\\Cortes\\Cortes.Dominio\\Cortes.Dominio.csproj",
+        "projectUniqueName": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Dominio\\Cortes.Dominio.csproj",
         "projectName": "Cortes.Dominio",
-        "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Dominio\\Cortes.Dominio.csproj",
+        "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Dominio\\Cortes.Dominio.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\BackEnd\\Cortes\\Cortes.Dominio\\obj\\",
+        "outputPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -64,14 +64,14 @@
         }
       }
     },
-    "C:\\BackEnd\\Cortes\\Cortes.Infra\\Cortes.Infra.csproj": {
+    "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BackEnd\\Cortes\\Cortes.Infra\\Cortes.Infra.csproj",
+        "projectUniqueName": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj",
         "projectName": "Cortes.Infra",
-        "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Infra\\Cortes.Infra.csproj",
+        "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\BackEnd\\Cortes\\Cortes.Infra\\obj\\",
+        "outputPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -130,14 +130,14 @@
         }
       }
     },
-    "C:\\BackEnd\\Cortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj": {
+    "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BackEnd\\Cortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj",
+        "projectUniqueName": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj",
         "projectName": "Cortes.Repositorio",
-        "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj",
+        "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\BackEnd\\Cortes\\Cortes.Repositorio\\obj\\",
+        "outputPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -160,11 +160,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\BackEnd\\Cortes\\Cortes.Dominio\\Cortes.Dominio.csproj": {
-                "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Dominio\\Cortes.Dominio.csproj"
+              "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Dominio\\Cortes.Dominio.csproj": {
+                "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Dominio\\Cortes.Dominio.csproj"
               },
-              "C:\\BackEnd\\Cortes\\Cortes.Infra\\Cortes.Infra.csproj": {
-                "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Infra\\Cortes.Infra.csproj"
+              "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj": {
+                "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj"
               }
             }
           }
@@ -197,14 +197,14 @@
         }
       }
     },
-    "C:\\BackEnd\\Cortes\\Cortes.Web\\Cortes.Web.csproj": {
+    "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BackEnd\\Cortes\\Cortes.Web\\Cortes.Web.csproj",
+        "projectUniqueName": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj",
         "projectName": "Cortes.Web",
-        "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Web\\Cortes.Web.csproj",
+        "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\BackEnd\\Cortes\\Cortes.Web\\obj\\",
+        "outputPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -227,11 +227,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\BackEnd\\Cortes\\Cortes.Infra\\Cortes.Infra.csproj": {
-                "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Infra\\Cortes.Infra.csproj"
+              "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj": {
+                "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj"
               },
-              "C:\\BackEnd\\Cortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj": {
-                "projectPath": "C:\\BackEnd\\Cortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj"
+              "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj": {
+                "projectPath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj"
               }
             }
           }

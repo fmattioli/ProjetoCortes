@@ -10,3 +10,15 @@ C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.csproj.CoreComp
 C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.dll
 C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\ref\Cortes.Dominio.dll
 C:\BackEnd\Cortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.pdb
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\bin\Debug\net5.0\Cortes.Dominio.deps.json
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\bin\Debug\net5.0\Cortes.Dominio.dll
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\bin\Debug\net5.0\ref\Cortes.Dominio.dll
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\bin\Debug\net5.0\Cortes.Dominio.pdb
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.csprojAssemblyReference.cache
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.AssemblyInfoInputs.cache
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.AssemblyInfo.cs
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.csproj.CoreCompileInputs.cache
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.dll
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\ref\Cortes.Dominio.dll
+C:\Projetos\BackEnd\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.pdb

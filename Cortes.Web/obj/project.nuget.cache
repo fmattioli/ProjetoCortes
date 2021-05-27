@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kT7hVIjVbLlCZgcYwF2SOfy9Z9RPQdjy1C/B5ac29ejClFAiuBRa2IsG7n8eBRAiZ7a1Bm2M3ILOLmIImKLkRw==",
+  "dgSpecHash": "eKw6NlewINxYEKMD/SoMoOmch6ZcfmxxYlg/PXQu8bOqIvENNspozktIr+AvtmFQTH1uuRtaReMNRh98bAF+0Q==",
   "success": true,
-  "projectFilePath": "C:\\BackEnd\\Cortes\\Cortes.Web\\Cortes.Web.csproj",
+  "projectFilePath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Web\\Cortes.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felip\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

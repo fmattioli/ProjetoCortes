@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wbUc9PCMTXSIYlzOh8ep0TH9dvAjgIYIyD9wtb3vs7daUAiS0eSG6D/vBzKjrN7Yd9iNNQd5wYNXWpsRZV4Agw==",
+  "dgSpecHash": "trrwX/QOZJhrvU8yJdKR6JOXMuIUDXjFuB0UiI8FwRTer0f6OhTeXDHAiitviv/6RfIh19AEjHHihl4xmLqghQ==",
   "success": true,
-  "projectFilePath": "C:\\BackEnd\\Cortes\\Cortes.Dominio\\Cortes.Dominio.csproj",
+  "projectFilePath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Dominio\\Cortes.Dominio.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

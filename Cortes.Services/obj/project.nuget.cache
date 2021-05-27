@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dsM5K47SIoF3mlsSGmsNXb+ddIzXG/bssHztYCxaJBsXHDByx2sQYa6lXFHjKD1gdNdJ2VVxeD5mOJz5yMYjIQ==",
+  "dgSpecHash": "1HaOs9OycCq/DWoGppMkW4E3uAiVgmOgRdxZDWdBpVKOcuABrNRgFu7P1Kzsq7CgBr8zMu5PAracQPu8tddGYw==",
   "success": true,
-  "projectFilePath": "C:\\BackEnd\\Cortes\\Cortes.Services\\Cortes.Services.csproj",
+  "projectFilePath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Services\\Cortes.Services.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

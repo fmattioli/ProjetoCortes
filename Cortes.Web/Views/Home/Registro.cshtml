@@ -1,0 +1,82 @@
+﻿@model Cortes.Web.ViewModels.RegistroViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registro</title>
+    <link href="~/lib/materialize/css/materialize.css" rel="stylesheet" />
+    <script src="~/lib/materialize/js/materialize.js"></script>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<div class="row">
+    <div class="col s12 m8 l6 offset-md-2 offset-l3">
+        <div class="card" style="margin-top: 120px; border-radius: 15px;">
+            <div class="card-action black lighten-1 white-text darken-2">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <span class="white-text text-darken-2">Já uma conta?</span> <span class="white-text text-darken-1"><a asp-controller="Home" asp-action="Login" style="color:#0094ff; text-transform: capitalize">Entrar</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <form asp-action="Registro">
+                <div class="card-content">
+                    <div class="form-field">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input asp-for="Nome" id="nome" type="text" class="validate">
+                                <label for="nome">Nome</label>
+                                <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input asp-for="Email" id="email" type="email" class="validate">
+                                <label for="email">E-mail</label>
+                                <span asp-validation-for="Email" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input asp-for="Senha" id="password" type="password" class="validate">
+                                <label for="password">Senha</label>
+                                <span asp-validation-for="Senha" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s6">
+                                <input asp-for="SenhaConfirmada" id="passwordconfirm" type="password" class="validate">
+                                <label for="passwordconfirm">Confirmar Senha</label>
+                                <span asp-validation-for="SenhaConfirmada" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input asp-for="Telefone" id="telefone" type="text" class="validate">
+                                <label for="telefone">Telefone</label>
+                                <span asp-validation-for="Telefone" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s6">
+                                <input asp-for="Endereco" id="endereco" type="text" class="validate">
+                                <label for="endereco">Endereço</label>
+                                <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="btn-large waves-effect waves-dark black darken-4" style="width:100%;">Registrar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

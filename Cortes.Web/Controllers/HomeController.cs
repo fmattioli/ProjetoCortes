@@ -1,6 +1,7 @@
 ﻿using Cortes.Repositorio.Interfaces.IUsuarioRepositorio;
 using Cortes.Repositorio.Repositorios.UsuarioRepositorio;
 using Cortes.Web.Models;
+using Cortes.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -11,27 +12,36 @@ namespace Cortes.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Login()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+
+            return View(model);
+        }
+
+        public IActionResult Registro()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult Registro(RegistroViewModel model)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+            return View(model);
         }
+
     }
 }

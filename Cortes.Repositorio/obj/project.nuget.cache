@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3fLY9o3uHyV69MGgYQ2lO50pq7OEoYh9nuljVqldeuWDmTBS2yUorUHAx3Grq9+JBHv3eCRxtduWMMk/g7JC+g==",
+  "dgSpecHash": "Bl9IOYYmn6IkSHW8wfM1rvLgJ0IGew98guK6phQ3N9jxJxSh3JVgu10R9Iy+hBA7Ywzo7G/XW+f2WC4EDDaxzQ==",
   "success": true,
-  "projectFilePath": "C:\\BackEnd\\Cortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj",
+  "projectFilePath": "C:\\Projetos\\BackEnd\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
