@@ -1,6 +1,7 @@
 ﻿using Cortes.Services.Interfaces;
 using Cortes.Services.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace Cortes.Web.Controllers
@@ -13,11 +14,19 @@ namespace Cortes.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, [FromServices] IUsuarioServico usuarioServices)
         {
             if (ModelState.IsValid)
             {
-                return View();
+                var usuario = await usuarioServices.ObterUsuario(model);
+                if(usuario != null)
+                {
+                    TempData["jsonUsuario"] = JsonConvert.SerializeObject(usuario);
+                    return RedirectToAction("Index", "Usuarios");
+                }
+
+                ModelState.AddModelError("", "E-mail ou senha inválidos");
+                return View(model);
             }
 
             return View(model);
@@ -33,8 +42,8 @@ namespace Cortes.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var resultado = await usuarioServices.CriarUsuario(model);
-                return View();
+                TempData["jsonUsuario"] = await usuarioServices.CriarUsuario(model);
+                return RedirectToAction("Index", "Usuarios");
             }
             return View(model);
         }

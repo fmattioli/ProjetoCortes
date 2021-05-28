@@ -6,6 +6,7 @@ namespace Cortes.Services.Interfaces
 {
     public interface IUsuarioServico
     {
-        Task<Usuario> CriarUsuario(RegistroViewModel usuario);
+        Task<string> CriarUsuario(RegistroViewModel usuario);
+        Task<LoginViewModel> ObterUsuario(LoginViewModel login);
     }
 }

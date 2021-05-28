@@ -1,21 +1,21 @@
-﻿using Cortes.Repositorio.Interfaces.IUsuarioRepositorio;
+﻿using Cortes.Dominio.Entidades;
+using Cortes.Infra.Comum;
+using Cortes.Repositorio.Interfaces.IUsuarioRepositorio;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cortes.Dominio.Entidades;
-using Cortes.Infra.Comum;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
+        private readonly IConfiguration config;
+        
         private StringBuilder SQL = new StringBuilder();
         private Generico generico;
-        public UsuarioRepositorio([FromServices] IConfiguration config)
+        public UsuarioRepositorio(IConfiguration config)
         {
             generico = new Generico(config);
         }
@@ -33,7 +33,7 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
                 await generico.RunSQLCommand(await generico.MontarInsert<Usuario>(usuario));
                 return usuario;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -44,9 +44,23 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
             throw new NotImplementedException();
         }
 
-        public Task<Usuario> Obter(int id)
+        public async Task<Usuario> Obter(Usuario usuario, IList<string> hasWhere)
         {
-            throw new NotImplementedException();
+            var dados = await generico.Select(await generico.MontarSelect<Usuario>(usuario, hasWhere));
+            if (dados.Rows.Count >= 1)
+            {
+                usuario = new Usuario()
+                {
+                    Nome = dados.Rows[0]["Nome"].ToString(),
+                    Email = dados.Rows[0]["Email"].ToString(),
+                    Senha = dados.Rows[0]["Senha"].ToString(),
+                    Telefone = dados.Rows[0]["Telefone"].ToString(),
+                    Endereco = dados.Rows[0]["Endereco"].ToString()
+                };
+
+                return usuario;
+            }
+            return null;
         }
     }
 }

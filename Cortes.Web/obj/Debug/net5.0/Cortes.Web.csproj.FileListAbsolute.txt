@@ -382,3 +382,17 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.pdb
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.genruntimeconfig.cache
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Cortes.Services.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Cortes.Services.pdb
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Usuarios\Index.cshtml.g.cs

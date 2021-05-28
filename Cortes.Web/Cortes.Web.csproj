@@ -5,12 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cortes.Infra\Cortes.Infra.csproj" />
-    <ProjectReference Include="..\Cortes.Repositorio\Cortes.Repositorio.csproj" />
     <ProjectReference Include="..\Cortes.Services\Cortes.Services.csproj" />
   </ItemGroup>
 

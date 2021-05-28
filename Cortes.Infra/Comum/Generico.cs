@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -22,12 +23,40 @@ namespace Cortes.Infra.Comum
 
         public async Task RunSQLCommand(string query)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // create connection and command
+                using (SqlConnection cn = new SqlConnection(conn))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    // open connection, execute INSERT, close connection
+                    cn.Open();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public Task<DataTable> Select(string query)
+        public async Task<DataTable> Select(string query)
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            await Task.Run(() =>
+            {
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+            });
+            return dt;
         }
 
         public async Task<string> MontarInsert<T>(T objeto)
@@ -39,7 +68,7 @@ namespace Cortes.Infra.Comum
                 var prop = objeto.GetType().GetProperties();
                 prop = prop.Where(a => a.Name != "Id").ToArray();
                 string lastItem = prop[prop.Length - 1].Name;
-                SQL.AppendLine($"INSERT INTO {objeto.GetType().Name}");
+                SQL.AppendLine($"INSERT INTO {objeto.GetType().Name}s");
                 SQL.AppendLine($"(");
                 foreach (var item in prop)
                 {
@@ -69,6 +98,47 @@ namespace Cortes.Infra.Comum
                     }
                 }
                 SQL.AppendLine($")");
+                sqlInsert = SQL.ToString();
+            });
+            return sqlInsert;
+        }
+
+        public async Task<string> MontarSelect<T>(T objeto, IList<string> hasWhere)
+        {
+            string sqlInsert = "";
+            await Task.Run(() =>
+            {
+                SQL.Clear();
+                var prop = objeto.GetType().GetProperties();
+                string lastItem = prop[prop.Length - 1].Name;
+                SQL.AppendLine($"SELECT ");
+                foreach (var item in prop)
+                {
+                    if (item.Name != lastItem)
+                        SQL.AppendLine($"{item.Name},");
+                    else
+                        SQL.AppendLine($"{item.Name}");
+                }
+
+                SQL.AppendLine($"FROM {objeto.GetType().Name}s");
+                if (hasWhere != null)
+                {
+                    SQL.AppendLine($"WHERE 1 = 1");
+                    foreach (var item in hasWhere)
+                    {
+                        if (objeto.GetType().GetProperties().Where(a => a.Name == item).ToArray()[0].PropertyType.FullName.Contains("String"))
+                        {
+                            string valor = objeto.GetType().GetProperties().Where(a => a.Name == item).ToArray()[0].GetValue(objeto).ToString();
+                            SQL.AppendLine($"AND {item} = '{valor}'");
+                        }
+                        else
+                        {
+                            string valor = objeto.GetType().GetProperties().Where(a => a.Name == item).ToArray()[0].GetValue(objeto).ToString();
+                            SQL.AppendLine($"AND {item} = {valor}");
+                        }
+                    }
+                }
+
                 sqlInsert = SQL.ToString();
             });
             return sqlInsert;

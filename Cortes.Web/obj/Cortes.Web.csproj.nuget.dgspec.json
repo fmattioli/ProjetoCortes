@@ -109,6 +109,10 @@
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.2.5, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
             }
           },
           "imports": [
@@ -249,6 +253,10 @@
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.11.1, )"
             }
           },
           "imports": [
@@ -300,12 +308,6 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj": {
-                "projectPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj"
-              },
-              "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj": {
-                "projectPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Repositorio\\Cortes.Repositorio.csproj"
-              },
               "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Services\\Cortes.Services.csproj": {
                 "projectPath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Services\\Cortes.Services.csproj"
               }
@@ -322,6 +324,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"

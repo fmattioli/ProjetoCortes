@@ -1,6 +1,6 @@
 {
   "ConnectionStrings": {
-    "CortesBD": "Server=FMATTIOLI\\SQLEXPRESS;Database=QuickBuyDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "CortesBD": "Server=DESKTOP-ENLSH4J;Database=Cortes;User Id=webri;Password=webri;"
   },
   "Secret": {
     "Key": "fedaf7d8863b48e197b9287d492b708e"

@@ -15,5 +15,9 @@ namespace Cortes.Services.ViewModels
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
+        public string Nome { get; set; }
+        public string Token { get; set; }
+        public string Id { get; set; }
+
     }
 }

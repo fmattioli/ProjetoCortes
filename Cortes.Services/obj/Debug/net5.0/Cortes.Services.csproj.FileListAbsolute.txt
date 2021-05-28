@@ -13,3 +13,7 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\ref\Cortes.Services.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\obj\Debug\net5.0\Cortes.Services.pdb
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Infra.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Repositorio.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Repositorio.pdb
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Services\bin\Debug\net5.0\Cortes.Infra.pdb

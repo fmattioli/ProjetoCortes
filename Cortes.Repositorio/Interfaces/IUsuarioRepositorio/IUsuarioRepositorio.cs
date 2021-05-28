@@ -9,7 +9,7 @@ namespace Cortes.Repositorio.Interfaces.IUsuarioRepositorio
 {
     public interface IUsuarioRepositorio
     {
-        Task<Usuario> Obter(int id);
+        Task<Usuario> Obter(Usuario usuario, IList<string> hasWhere);
         Task<Usuario> Atualizar(Usuario usuario);
         Task<Usuario> Criar(Usuario usuario);
         Task<bool> Existe();

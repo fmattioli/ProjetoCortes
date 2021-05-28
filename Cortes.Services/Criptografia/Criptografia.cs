@@ -4,31 +4,23 @@ using System.Text;
 
 namespace Cortes.Services
 {
-    public class Criptografia
+    public static class Criptografia
     {
-        private RijndaelManaged rijndael = new RijndaelManaged();
-        private byte[] passBytes;
-        private byte[] encryptionkeyBytes;
+        private static RijndaelManaged rijndael = new RijndaelManaged();
+        private static byte[] passBytes;
+        private static byte[] encryptionkeyBytes;
 
-        /// <summary>
-        /// Construtor da classe Cryptography. É obrigatório informar a chave de criptografia como parâmetro
-        /// </summary>
-        /// <param name="encryptionKey"></param>
-        public Criptografia(string encryptionKey)
-        {
-            passBytes = Encoding.UTF8.GetBytes(encryptionKey);
-        }
-        
 
         /// <summary>
         /// Método que criptografa o texto passado como parâmetro
         /// </summary>
         /// <param name="textToEncrypt"></param>
         /// <returns>Uma string criptografada</returns>
-        public string Encrypt(string textToEncrypt)
+        public static string Encrypt(string textToEncrypt)
         {
+            string encryptionKey = "felipemattiolidossantos";
+            passBytes = Encoding.UTF8.GetBytes(encryptionKey);
             SetOperation();
-
             SetBeginCryptography();
 
             byte[] textDataByte = Encoding.UTF8.GetBytes(textToEncrypt);
@@ -42,7 +34,7 @@ namespace Cortes.Services
         /// </summary>
         /// <param name="encryptedText"></param>
         /// <returns>Uma string descriptografada</returns>
-        public string Decrypt(string encryptedText)
+        public static string Decrypt(string encryptedText)
         {
             SetOperation();
 
@@ -55,7 +47,7 @@ namespace Cortes.Services
             return Encoding.UTF8.GetString(textByte);
         }
 
-        private void SetOperation()
+        private static void SetOperation()
         {
             rijndael.Mode = CipherMode.CBC;
             rijndael.Padding = PaddingMode.PKCS7;
@@ -63,7 +55,7 @@ namespace Cortes.Services
             rijndael.BlockSize = 0x80;
         }
 
-        private void SetBeginCryptography()
+        private static void SetBeginCryptography()
         {
             encryptionkeyBytes = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
