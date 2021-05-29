@@ -1,0 +1,41 @@
+﻿
+@if (TempData["Token"] != null)
+{
+    <input type="hidden" id="txtToken" value="@TempData["Token"]" />
+    <input type="hidden" id="txtNome" value="@TempData["Nome"]" />
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/lib/materialize/css/materialize.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script src="~/lib/materialize/js/materialize.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/materialize/js/materialize.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/operacoesusuario.js"></script>
+    <script src="~/js/InicializarSideNav.js"></script>
+
+</head>
+
+<nav class="" id="navMenu">
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            @*<li id="userLogado">Eae, usuário!</li>*@
+            <li><a href="#">Eae, Usuário</a></li>
+            <li><a asp-action="Index" asp-controller="Usuarios">Início</a></li>
+            <li><a href="badges.html">Agenda</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a asp-action="Index" asp-controller="Usuarios">Início</a></li>
+    <li><a href="badges.html">Agenda</a></li>
+    <li><a href="#">Eae, Usuário</a></li>
+</ul>
+

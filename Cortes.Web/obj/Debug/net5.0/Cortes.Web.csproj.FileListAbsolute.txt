@@ -354,7 +354,6 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.Generated
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.AssemblyInfoInputs.cache
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.AssemblyInfo.cs
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.csproj.CoreCompileInputs.cache
-C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.MvcApplicationPartsAssemblyInfo.cs
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.MvcApplicationPartsAssemblyInfo.cache
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.RazorAssemblyInfo.cache
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.RazorAssemblyInfo.cs
@@ -396,3 +395,4 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.IdentityMo
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Usuarios\Index.cshtml.g.cs
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Shared\_Menu.cshtml.g.cs

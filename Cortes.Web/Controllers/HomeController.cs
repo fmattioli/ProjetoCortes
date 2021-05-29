@@ -21,7 +21,8 @@ namespace Cortes.Web.Controllers
                 var usuario = await usuarioServices.ObterUsuario(model);
                 if(usuario != null)
                 {
-                    TempData["jsonUsuario"] = JsonConvert.SerializeObject(usuario);
+                    TempData["Token"] = usuario.Token;
+                    TempData["Nome"] = usuario.Nome;
                     return RedirectToAction("Index", "Usuarios");
                 }
 

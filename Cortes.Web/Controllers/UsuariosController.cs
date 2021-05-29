@@ -1,4 +1,5 @@
 ﻿using Cortes.Services.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -12,8 +13,8 @@ namespace Cortes.Web.Controllers
     {
         public IActionResult Index()
         {
-            var model = JsonConvert.DeserializeObject<LoginViewModel>(TempData["jsonUsuario"].ToString());
-            return View(model);
+            return View();
         }
+
     }
 }
