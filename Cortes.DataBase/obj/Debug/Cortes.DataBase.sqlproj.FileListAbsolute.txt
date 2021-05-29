@@ -1,0 +1,10 @@
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\bin\Debug\Cortes.DataBase.dacpac
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\bin\Debug\Cortes.DataBase.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\bin\Debug\Cortes.DataBase.pdb
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\obj\Debug\Cortes.DataBase.sqlprojAssemblyReference.cache
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\obj\Debug\Model.xml
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\obj\Debug\refactor.xml
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\obj\Debug\postdeploy.sql
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\obj\Debug\predeploy.sql
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\obj\Debug\Cortes.DataBase.dll
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\obj\Debug\Cortes.DataBase.pdb

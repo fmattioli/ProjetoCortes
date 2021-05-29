@@ -8,6 +8,6 @@ namespace Cortes.Dominio.Util
 {
     public class Comum
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }

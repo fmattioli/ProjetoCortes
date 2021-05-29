@@ -11,7 +11,6 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        private readonly IConfiguration config;
         
         private StringBuilder SQL = new StringBuilder();
         private Generico generico;
@@ -55,7 +54,8 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
                     Email = dados.Rows[0]["Email"].ToString(),
                     Senha = dados.Rows[0]["Senha"].ToString(),
                     Telefone = dados.Rows[0]["Telefone"].ToString(),
-                    Endereco = dados.Rows[0]["Endereco"].ToString()
+                    Endereco = dados.Rows[0]["Endereco"].ToString(),
+                    Id = dados.Rows[0]["Id"].ToString()
                 };
 
                 return usuario;

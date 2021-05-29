@@ -1,0 +1,56 @@
+﻿@model Cortes.Services.ViewModels.AgendamentoViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+<partial name="_Menu" />
+<div class="row">
+    <div class="col s12 m8 l6 offset-md-2 offset-l3">
+        <div class="card" style="margin-top: 80px; border-radius: 15px;">
+
+            <form asp-action="Agendamento">
+                <div class="card-content">
+                    <div class="form-field">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select id="ddlEspecie" asp-for="DiaSelecionado" asp-items="@Model.Dias">
+                                    <option value="0">Selecione o dia</option>
+                                </select>
+                                <label>Especie: </label>
+                                <span asp-validation-for="DiaSelecionado" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s12">
+                                <input asp-for="Nome" id="nome" type="text" class="validate">
+                                <label asp-for="Nome">Nome</label>
+                                <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input asp-for="Endereco" id="endereco" type="text" class="validate">
+                                <label asp-for="Endereco">Endereco</label>
+                                <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input asp-for="Horario" id="Horario" type="text" class="validate">
+                                <label asp-for="Horario">Horario</label>
+                                <span asp-validation-for="Horario" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="btn-large waves-effect waves-dark black darken-4" style="width:100%;">Agendar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

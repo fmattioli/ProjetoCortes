@@ -11,9 +11,13 @@ namespace Cortes.Web.Controllers
 {
     public class UsuariosController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string Id)
         {
-            return View();
+            if (string.IsNullOrEmpty(Id))
+                return RedirectToAction("Login", "Home");
+
+            TempData["Id"] = Id;
+            return View("Index");
         }
 
     }

@@ -11,4 +11,12 @@
 });
 
 
+function Deslogar() {
+    sessionStorage.setItem("tokenAuth", "");
+    sessionStorage.setItem("nomeUser", "");
+    window.location.href = '/Home/Login';
+
+}
+
+
 

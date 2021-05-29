@@ -23,7 +23,9 @@ namespace Cortes.Web.Controllers
                 {
                     TempData["Token"] = usuario.Token;
                     TempData["Nome"] = usuario.Nome;
-                    return RedirectToAction("Index", "Usuarios");
+                    TempData["Id"] = usuario.Id;
+                    ViewBag.Id = usuario.Id;
+                    return RedirectToAction("Index", "Usuarios", new { Id = usuario.Id});
                 }
 
                 ModelState.AddModelError("", "E-mail ou senha inválidos");
