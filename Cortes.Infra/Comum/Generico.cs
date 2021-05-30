@@ -59,7 +59,7 @@ namespace Cortes.Infra.Comum
             return dt;
         }
 
-        public async Task<string> MontarInsert<T>(T objeto)
+        public async Task<string> MontarInsert<T>(T objeto, bool plural = true)
         {
             string sqlInsert = "";
             await Task.Run(() =>
@@ -68,7 +68,11 @@ namespace Cortes.Infra.Comum
                 var prop = objeto.GetType().GetProperties();
                 prop = prop.Where(a => a.Name != "Id").ToArray();
                 string lastItem = prop[prop.Length - 1].Name;
-                SQL.AppendLine($"INSERT INTO {objeto.GetType().Name}s");
+
+                if(plural)
+                    SQL.AppendLine($"INSERT INTO {objeto.GetType().Name}s");
+                else
+                    SQL.AppendLine($"INSERT INTO {objeto.GetType().Name}");
                 SQL.AppendLine($"(");
                 foreach (var item in prop)
                 {
@@ -103,7 +107,7 @@ namespace Cortes.Infra.Comum
             return sqlInsert;
         }
 
-        public async Task<string> MontarSelect<T>(T objeto, IList<string> hasWhere)
+        public async Task<string> MontarSelect<T>(T objeto, IList<string> temWhere, bool plural = true)
         {
             string sqlInsert = "";
             await Task.Run(() =>
@@ -119,12 +123,14 @@ namespace Cortes.Infra.Comum
                     else
                         SQL.AppendLine($"{item.Name}");
                 }
-
-                SQL.AppendLine($"FROM {objeto.GetType().Name}s");
-                if (hasWhere != null)
+                if(plural)
+                    SQL.AppendLine($"FROM {objeto.GetType().Name}s");
+                else
+                    SQL.AppendLine($"FROM {objeto.GetType().Name}");
+                if (temWhere != null)
                 {
                     SQL.AppendLine($"WHERE 1 = 1");
-                    foreach (var item in hasWhere)
+                    foreach (var item in temWhere)
                     {
                         if (objeto.GetType().GetProperties().Where(a => a.Name == item).ToArray()[0].PropertyType.FullName.Contains("String"))
                         {

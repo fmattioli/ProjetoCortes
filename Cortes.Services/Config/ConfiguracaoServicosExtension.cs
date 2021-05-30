@@ -1,5 +1,6 @@
 ﻿using Cortes.Services.Interfaces;
 using Cortes.Services.Interfaces.AgendamentoServico;
+using Cortes.Services.Interfaces.EstabelecimentoServico;
 using Cortes.Services.Servicos;
 using Cortes.Services.UsuarioServicos;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,7 @@ namespace Cortes.Services.Config
         {
             services.AddTransient<IUsuarioServico, UsuarioServico>();
             services.AddTransient<IAgendamentoServico, AgendamentoServico>();
+            services.AddTransient<IEstabelecimentoServico, EstabelecimentoServico>();
         }
     }
 }

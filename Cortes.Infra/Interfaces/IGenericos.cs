@@ -11,6 +11,7 @@ namespace Cortes.Infra.Interfaces
     {
         Task<DataTable> Select(string query);
         Task RunSQLCommand(string query);
-        Task<string> MontarInsert<T>(T objeto);
+        Task<string> MontarInsert<T>(T objeto, bool plural);
+        Task<string> MontarSelect<T>(T objeto, IList<string> hasWhere, bool plural = true);
     }
 }

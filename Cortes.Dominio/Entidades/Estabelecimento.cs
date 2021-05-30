@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Cortes.Dominio.Entidades
 {
-    public class DiasSemana
+    public class Estabelecimento
     {
         public string Id { get; set; }
-        public int Codigo { get; set; }
-        public string Dia { get; set; }
+        public string Nome { get; set; }
+        public string Endereco { get; set; }
     }
 }

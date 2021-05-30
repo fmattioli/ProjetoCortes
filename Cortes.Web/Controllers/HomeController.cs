@@ -1,4 +1,5 @@
 ﻿using Cortes.Services.Interfaces;
+using Cortes.Services.Interfaces.EstabelecimentoServico;
 using Cortes.Services.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -14,13 +15,19 @@ namespace Cortes.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, [FromServices] IUsuarioServico usuarioServices)
+        public async Task<IActionResult> Login(LoginViewModel model, [FromServices] IUsuarioServico usuarioServices, [FromServices] IEstabelecimentoServico estabelecimentoServico)
         {
             if (ModelState.IsValid)
             {
                 var usuario = await usuarioServices.ObterUsuario(model);
                 if(usuario != null)
                 {
+                    //Validar se existe configurações necessárias!
+                    if (!await estabelecimentoServico.ExisteConfiguracao())
+                    {
+                        //Configurações iniciais
+                        await estabelecimentoServico.RealizarConfiguracao();
+                    }
                     TempData["Token"] = usuario.Token;
                     TempData["Nome"] = usuario.Nome;
                     TempData["Id"] = usuario.Id;

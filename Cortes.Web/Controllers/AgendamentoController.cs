@@ -12,11 +12,11 @@ namespace Cortes.Web.Controllers
     public class AgendamentoController : Controller
     {
         [HttpGet]
-        public IActionResult Agendamento(string Id, [FromServices] IAgendamentoServico agendamentoServico)
+        public async Task<IActionResult> Agendamento(string Id, [FromServices] IAgendamentoServico agendamentoServico)
         {
             TempData["Id"] = Id;
-            var model = agendamentoServico.CarregarDropDowns();
-            return View();
+            var model = await agendamentoServico.CarregarDropDowns();
+            return View(model);
         }
 
         [HttpPost]
