@@ -33,4 +33,3 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.c
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\ref\Cortes.Dominio.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.pdb
-C:\BackEnd\Cortes\ProjetoCortes\Cortes.Dominio\obj\Debug\net5.0\Cortes.Dominio.csprojAssemblyReference.cache

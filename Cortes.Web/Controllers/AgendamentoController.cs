@@ -1,6 +1,7 @@
 ﻿using Cortes.Repositorio.Interfaces.IAgendamentoRepositorio;
 using Cortes.Services.Interfaces.AgendamentoServico;
 using Cortes.Services.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,12 @@ namespace Cortes.Web.Controllers
             return View();
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<JsonResult> RealizarAgendamento()
+        {
+            return Json("OK");
+        }
         
 
     }

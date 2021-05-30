@@ -10,5 +10,6 @@ namespace Cortes.Services.Interfaces.AgendamentoServico
     public interface IAgendamentoServico
     {
         public Task<AgendamentoViewModel> CarregarDropDowns();
+        public Task<bool> ConfirmarAgendamento(AgendamentoViewModel agendamentoViewModel);
     }
 }

@@ -19,12 +19,16 @@ namespace Cortes.Services.ViewModels
         public SelectList Dias { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Escolha um dia válido")]
         public int DiaSelecionado { get; set; }
+        public SelectList Horarios { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Escolha um horário válido")]
+        public int HorarioSelecionado { get; set; }
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DisplayName("Cabeleireiro")]
         public string Usuario_Id { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
         public string Horario { get; set; }
+        public decimal Preco { get; set; }
 
     }
 }

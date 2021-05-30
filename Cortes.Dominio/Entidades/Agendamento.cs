@@ -14,5 +14,6 @@ namespace Cortes.Dominio.Entidades
 		public string DiaSemana_Id { get; set; }
 		public string Usuario_Id { get; set; }
 		public string Horario { get; set; }
+		public decimal Preco { get; set; }
 	}
 }

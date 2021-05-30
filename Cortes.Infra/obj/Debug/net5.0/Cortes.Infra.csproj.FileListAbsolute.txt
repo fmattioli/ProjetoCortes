@@ -33,4 +33,3 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.cspro
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Infra\obj\Debug\net5.0\ref\Cortes.Infra.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.pdb
-C:\BackEnd\Cortes\ProjetoCortes\Cortes.Infra\obj\Debug\net5.0\Cortes.Infra.csprojAssemblyReference.cache

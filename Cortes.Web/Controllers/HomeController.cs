@@ -35,7 +35,7 @@ namespace Cortes.Web.Controllers
                     return RedirectToAction("Index", "Usuarios", new { Id = usuario.Id});
                 }
 
-                ModelState.AddModelError("", "E-mail ou senha inválidos");
+                ModelState.AddModelError("Email", "E-mail ou senha inválidos");
                 return View(model);
             }
 

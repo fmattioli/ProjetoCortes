@@ -10,5 +10,7 @@ namespace Cortes.Repositorio.Interfaces.IAgendamentoRepositorio
     public interface IAgendamentoRepositorio
     {
         Task<IList<DiasSemana>> DiasSemana(DiasSemana dias);
+        Task<IList<Horario>> Horarios();
+        Task<bool> ConfirmarAgendamento(Agendamento agendamento);
     }
 }

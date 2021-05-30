@@ -12,30 +12,40 @@
                 <div class="card-content">
                     <div class="form-field">
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s5">
                                 <input asp-for="Nome" id="nome" type="text" class="validate">
                                 <label asp-for="Nome">Nome</label>
                                 <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
                             </div>
+                            <div class="input-field col s4">
+                                <input asp-for="Endereco" id="endereco" type="text" class="validate">
+                                <label asp-for="Endereco">Endereco</label>
+                                <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s3">
+                                <input asp-for="Preco" id="Horario" type="text" class="validate">
+                                <label asp-for="Preco">Preço</label>
+                                <span asp-validation-for="Preco" class="red-text text-darken-4"></span>
+                            </div>
+
+                        </div>
+                        <div class="row">
                             <div class="input-field col s6">
-                                <select id="ddlEspecie" asp-for="DiaSelecionado" asp-items="@Model.Dias">
+                                <select id="ddlDiaSemana" asp-for="DiaSelecionado" asp-items="@Model.Dias">
                                     <option value="0">Selecione o dia</option>
                                 </select>
                                 <label>Dia da semana: </label>
                                 <span asp-validation-for="DiaSelecionado" class="red-text text-darken-4"></span>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="input-field col s6">
-                                <input asp-for="Horario" id="Horario" type="text" class="validate">
-                                <label asp-for="Horario">Horario</label>
-                                <span asp-validation-for="Horario" class="red-text text-darken-4"></span>
+                                <select id="ddlHorario" asp-for="HorarioSelecionado" asp-items="@Model.Horarios">
+                                    <option value="0">Selecione o horário</option>
+                                </select>
+                                <label>Horário: </label>
+                                <span asp-validation-for="HorarioSelecionado" class="red-text text-darken-4"></span>
                             </div>
-                            <div class="input-field col s6">
-                                <input asp-for="Endereco" id="endereco" type="text" class="validate">
-                                <label asp-for="Endereco">Endereco</label>
-                                <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
-                            </div>
+                            
+
                         </div>
                     </div>
 

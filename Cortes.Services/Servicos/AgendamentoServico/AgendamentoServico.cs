@@ -24,13 +24,26 @@ namespace Cortes.Services.Servicos
         {
             AgendamentoViewModel agendamento = new AgendamentoViewModel();
             await CarregarDropDownDiasSemana(agendamento);
+            await CarregarDropDownHorarios(agendamento);
             return agendamento;
+        }
+
+        public Task<bool> ConfirmarAgendamento(AgendamentoViewModel agendamentoViewModel)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task CarregarDropDownDiasSemana(AgendamentoViewModel agendamento)
         {
-            var grupos = await agendamentoRepositorio.DiasSemana(new DiasSemana());
-            agendamento.Dias= new SelectList(grupos, "Codigo", "Dia", 0);
+            var dias = await agendamentoRepositorio.DiasSemana(new DiasSemana());
+            agendamento.Dias= new SelectList(dias, "Codigo", "Dia", 0);
+        }
+
+        private async Task CarregarDropDownHorarios(AgendamentoViewModel agendamento)
+        {
+
+            var horarios = await agendamentoRepositorio.Horarios();
+            agendamento.Horarios = new SelectList(horarios, "Codigo", "Hora", 0);
         }
 
     }

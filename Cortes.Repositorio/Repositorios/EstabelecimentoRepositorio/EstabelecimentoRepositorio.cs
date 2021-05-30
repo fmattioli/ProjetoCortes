@@ -75,7 +75,9 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                 estabelecimento = new Estabelecimento
                 {
                     Nome = "CABELEIREIRO",
-                    Endereco = "AVENIDA"
+                    Endereco = "AVENIDA",
+                    HoraAbertura = "08:30",
+                    HoraFechamento = "23:00"
                 };
 
                 await generico.RunSQLCommand(await generico.MontarInsert<Estabelecimento>(estabelecimento, false));
