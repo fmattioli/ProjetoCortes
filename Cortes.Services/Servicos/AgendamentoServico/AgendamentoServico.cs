@@ -4,6 +4,7 @@ using Cortes.Services.Interfaces.AgendamentoServico;
 using Cortes.Services.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,9 @@ namespace Cortes.Services.Servicos
             return agendamento;
         }
 
-        public Task<bool> ConfirmarAgendamento(AgendamentoViewModel agendamentoViewModel)
+        public async Task<bool> ConfirmarAgendamento(AgendamentoViewModel agendamentoViewModel)
         {
-            throw new NotImplementedException();
+            return await agendamentoRepositorio.ConfirmarAgendamento(null);
         }
 
         private async Task CarregarDropDownDiasSemana(AgendamentoViewModel agendamento)
@@ -41,7 +42,6 @@ namespace Cortes.Services.Servicos
 
         private async Task CarregarDropDownHorarios(AgendamentoViewModel agendamento)
         {
-
             var horarios = await agendamentoRepositorio.Horarios();
             agendamento.Horarios = new SelectList(horarios, "Codigo", "Hora", 0);
         }

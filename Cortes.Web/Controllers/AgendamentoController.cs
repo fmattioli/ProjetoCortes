@@ -3,6 +3,7 @@ using Cortes.Services.Interfaces.AgendamentoServico;
 using Cortes.Services.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,10 @@ namespace Cortes.Web.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        public async Task<JsonResult> RealizarAgendamento()
+        public async Task<JsonResult> RealizarAgendamento(string model, [FromServices] IAgendamentoServico agendamentoServico)
         {
+            AgendamentoViewModel agendamentoModel  = JsonConvert.DeserializeObject<AgendamentoViewModel>(model);
+            await agendamentoServico.ConfirmarAgendamento(agendamentoModel);
             return Json("OK");
         }
         
