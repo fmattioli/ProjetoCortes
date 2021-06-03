@@ -25,9 +25,7 @@ namespace Cortes.Services.ViewModels
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DisplayName("Cabeleireiro")]
         public string Usuario_Id { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
-        public string Horario { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public decimal Preco { get; set; }
 
     }

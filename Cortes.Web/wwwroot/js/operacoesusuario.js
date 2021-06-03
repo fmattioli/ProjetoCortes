@@ -8,6 +8,10 @@
         var nome = $('#txtNome').val();
         sessionStorage.setItem("nomeUser", nome);
     }
+    if (sessionStorage.getItem("IdUser") == "" || sessionStorage.getItem("IdUser") == null) {
+        var nome = $('#txtId').val();
+        sessionStorage.setItem("IdUser", nome);
+    }
 });
 
 
