@@ -21,6 +21,22 @@ namespace Cortes.Services.Servicos
             this.agendamentoRepositorio = agendamentoRepositorio;
         }
 
+        public async Task<IList<AgendamentoViewModel>> AgendamentosDiario()
+        {
+            var listaAgendamento = new List<AgendamentoViewModel>();
+            
+            foreach (var item in await agendamentoRepositorio.AgendamentosDiario())
+            {
+                listaAgendamento.Add(new AgendamentoViewModel()
+                {
+                    Nome = item.Nome,
+                    HorarioSelecionado = item.Horario,
+                    Preco = item.Preco
+                });
+            }
+            return listaAgendamento;
+        }
+
         public async Task<AgendamentoViewModel> CarregarDropDowns()
         {
             AgendamentoViewModel agendamento = new AgendamentoViewModel();
@@ -29,9 +45,33 @@ namespace Cortes.Services.Servicos
             return agendamento;
         }
 
-        public async Task<bool> ConfirmarAgendamento(AgendamentoViewModel agendamentoViewModel)
+        public async Task<bool> ConfirmarAgendamento(AgendamentoViewModel model)
         {
-            return await agendamentoRepositorio.ConfirmarAgendamento(null);
+            Agendamento agendamento = new Agendamento
+            {
+                Codigo = model.DiaSelecionado,
+                Endereco = model.Endereco,
+                Horario = model.HorarioSelecionado,
+                Usuario_Id = model.Usuario_Id,
+                Nome = model.Nome,
+                Preco = model.Preco
+            };
+
+            return await agendamentoRepositorio.ConfirmarAgendamento(agendamento);
+        }
+
+        public async Task<bool> ValidarAgendamento(AgendamentoViewModel model)
+        {
+            Agendamento agendamento = new Agendamento
+            {
+                Codigo = model.DiaSelecionado,
+                Endereco = model.Endereco,
+                Horario = model.HorarioSelecionado,
+                Usuario_Id = model.Usuario_Id,
+                Nome = model.Nome,
+                Preco = model.Preco
+            };
+            return await agendamentoRepositorio.ValidarAgendamento(agendamento);
         }
 
         private async Task CarregarDropDownDiasSemana(AgendamentoViewModel agendamento)

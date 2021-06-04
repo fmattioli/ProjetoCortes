@@ -1,4 +1,5 @@
-﻿using Cortes.Services.ViewModels;
+﻿using Cortes.Services.Interfaces.AgendamentoServico;
+using Cortes.Services.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,13 +12,14 @@ namespace Cortes.Web.Controllers
 {
     public class UsuariosController : Controller
     {
-        public IActionResult Index(string Id)
+        public async Task<IActionResult> Index(string Id, [FromServices] IAgendamentoServico agendamentoServico)
         {
             if (string.IsNullOrEmpty(Id))
                 return RedirectToAction("Login", "Home");
 
+
             TempData["Id"] = Id;
-            return View("Index");
+            return View(await agendamentoServico.AgendamentosDiario());
         }
 
     }

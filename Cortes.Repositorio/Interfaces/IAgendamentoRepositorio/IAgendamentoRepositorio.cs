@@ -11,6 +11,9 @@ namespace Cortes.Repositorio.Interfaces.IAgendamentoRepositorio
     {
         Task<IList<DiasSemana>> DiasSemana(DiasSemana dias);
         Task<IList<Horario>> Horarios();
+        Task<IList<Agendamento>> AgendamentosDiario();
         Task<bool> ConfirmarAgendamento(Agendamento agendamento);
+        Task<bool> ValidarAgendamento(Agendamento agendamento);
+        string RetornarDiaDaSemanaCodigo(DayOfWeek dayOfWeek);
     }
 }

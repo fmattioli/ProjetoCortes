@@ -21,7 +21,7 @@ namespace Cortes.Services.ViewModels
         public int DiaSelecionado { get; set; }
         public SelectList Horarios { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Escolha um horário válido")]
-        public int HorarioSelecionado { get; set; }
+        public string HorarioSelecionado { get; set; }
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DisplayName("Cabeleireiro")]
         public string Usuario_Id { get; set; }

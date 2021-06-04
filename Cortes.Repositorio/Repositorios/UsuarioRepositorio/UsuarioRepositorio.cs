@@ -45,7 +45,7 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
 
         public async Task<Usuario> Obter(Usuario usuario, IList<string> hasWhere)
         {
-            var dados = await generico.Select(await generico.MontarSelect<Usuario>(usuario, hasWhere));
+            var dados = await generico.Select(await generico.MontarSelectObjeto<Usuario>(usuario, hasWhere));
             if (dados.Rows.Count >= 1)
             {
                 usuario = new Usuario()

@@ -21,7 +21,7 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
 
         public async Task<bool> ExisteConfiguracao(Estabelecimento estabelecimento)
         {
-            var dt = await generico.Select(await generico.MontarSelect<Estabelecimento>(estabelecimento, null, false));
+            var dt = await generico.Select(await generico.MontarSelectObjeto<Estabelecimento>(estabelecimento, null, false));
             return dt?.Rows.Count >= 1;
         }
 
@@ -35,43 +35,43 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                     Codigo = 1,
                     Dia = "Segunda-Feira"
                 };
-                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, null, false));
                 diasSemana = new DiasSemana
                 {
                     Codigo = 2,
                     Dia = "Terça-Feira"
                 };
-                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, null, false));
                 diasSemana = new DiasSemana
                 {
                     Codigo = 3,
                     Dia = "Quarta-Feira"
                 };
-                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, null, false));
                 diasSemana = new DiasSemana
                 {
                     Codigo = 4,
                     Dia = "Quinta-Feira"
                 };
-                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, null, false));
                 diasSemana = new DiasSemana
                 {
                     Codigo = 5,
                     Dia = "Sexta-Feira"
                 };
-                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, null, false));
                 diasSemana = new DiasSemana
                 {
                     Codigo = 6,
                     Dia = "Sábado"
                 };
-                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, null, false));
                 diasSemana = new DiasSemana
                 {
                     Codigo = 7,
                     Dia = "Domingo"
                 };
-                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<DiasSemana>(diasSemana, null, false));
                 estabelecimento = new Estabelecimento
                 {
                     Nome = "CABELEIREIRO",
@@ -80,7 +80,7 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                     HoraFechamento = "23:00"
                 };
 
-                await generico.RunSQLCommand(await generico.MontarInsert<Estabelecimento>(estabelecimento, false));
+                await generico.RunSQLCommand(await generico.MontarInsert<Estabelecimento>(estabelecimento, null,false));
                 return true;
             }
             catch

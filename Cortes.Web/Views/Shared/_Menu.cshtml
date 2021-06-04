@@ -22,29 +22,32 @@
 </head>
 
 <ul id="dropdown1" class="dropdown-content">
-    <li><a asp-action="Agendamento" asp-controller="Agendamento" asp-route-Id="@TempData["Id"]">Agendar</a></li>
+    <li><a asp-action="VerificarAgendamento" asp-controller="Agendamento" asp-route-Id="@TempData["Id"]">Confirmar horário</a></li>
+    <li><a asp-action="Agendamento" asp-controller="Agendamento" asp-route-Id="@TempData["Id"]">Agendar horário</a></li>
 </ul>
 
 <ul id="dropdown_mobile" class="dropdown-content">
-    <li><a asp-action="Agendamento" asp-controller="Agendamento" asp-route-Id="@TempData["Id"]">Agendar</a></li>
+    <li><a asp-action="VerificarAgendamento" asp-controller="Agendamento" asp-route-Id="@TempData["Id"]">Confirmar horário</a></li>
+    <li><a asp-action="Agendamento" asp-controller="Agendamento" asp-route-Id="@TempData["Id"]">Agendar horário</a></li>
 </ul>
 
 <nav class="" id="navMenu">
     <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Corte's</a>
+        <a asp-action="Index" asp-controller="Usuarios" asp-route-Id="@TempData["Id"]" class="brand-logo">Corte's</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             @*<li><a href="#">Eae, Usuário</a></li>*@
+            <li><a onclick="Deslogar()">Sair</a></li>
             <li><a asp-action="Index" asp-controller="Usuarios" asp-route-Id="@TempData["Id"]">Início</a></li>
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Agendamento<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a onclick="Deslogar()">Sair</a></li>
+
         </ul>
     </div>
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
+    <li><a onclick="Deslogar()">Sair</a></li>
     <li><a asp-action="Index" asp-controller="Usuarios" asp-route-Id="@TempData["Id"]">Início</a></li>
     <li><a class="dropdown-trigger" href="#!" data-target="dropdown_mobile">Agendamento<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li><a onclick="Deslogar()">Sair</a></li>
 </ul>
 

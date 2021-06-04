@@ -21,20 +21,30 @@ namespace Cortes.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Agendamento(AgendamentoViewModel model)
+        [HttpGet]
+        public async Task<IActionResult> VerificarAgendamento(string Id, [FromServices] IAgendamentoServico agendamentoServico)
         {
-            return View();
+            TempData["Id"] = Id;
+            var model = await agendamentoServico.CarregarDropDowns();
+            return View(model);
         }
 
         [Authorize]
         public async Task<JsonResult> RealizarAgendamento(string model, [FromServices] IAgendamentoServico agendamentoServico)
         {
             AgendamentoViewModel agendamentoModel  = JsonConvert.DeserializeObject<AgendamentoViewModel>(model);
-            await agendamentoServico.ConfirmarAgendamento(agendamentoModel);
-            return Json("OK");
+            var retorno = await agendamentoServico.ConfirmarAgendamento(agendamentoModel);
+            return Json(retorno);
         }
-        
+
+        [Authorize]
+        public async Task<JsonResult> VerificarSeExisteAgendamento(string model, [FromServices] IAgendamentoServico agendamentoServico)
+        {
+            AgendamentoViewModel agendamentoModel = JsonConvert.DeserializeObject<AgendamentoViewModel>(model);
+            var retorno = await agendamentoServico.ValidarAgendamento(agendamentoModel);
+            return Json(retorno);
+        }
+
 
     }
 }

@@ -20,15 +20,51 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             generico = new Generico(config);
         }
 
-        public Task<bool> ConfirmarAgendamento(Agendamento agendamento)
+        public async Task<bool> ConfirmarAgendamento(Agendamento agendamento)
         {
-            throw new NotImplementedException();
+            if (await ValidarAgendamento(agendamento))
+            {
+                //Configurar Cláusula WHERE
+                var listWhere = new List<(bool isInt, string nome, string valor)>();
+                listWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
+
+                //Obter Id
+                var dt = await generico.Select(await generico.MontarSelectGetId("DiasSemana", listWhere));
+                agendamento.DiaSemana_Id = dt.Rows[0]["Id"].ToString();
+
+                //Marcar corte
+                List<string> listaDesconsiderar = new List<string>();
+                listaDesconsiderar.Add("Codigo");
+                await generico.RunSQLCommand(await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true));
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> ValidarAgendamento(Agendamento agendamento)
+        {
+            var listaWhere = new List<(bool isInt, string nome, string valor)>();
+            var listaJoin = new List<(string, string, string)>();
+            var listaSelect = new List<(bool isInt, string nome)>();
+
+            listaWhere.Add((false, nameof(agendamento.Horario), agendamento.Horario));
+            listaWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
+
+            listaSelect.Add((false, nameof(agendamento.Horario)));
+            listaSelect.Add((true, nameof(agendamento.Codigo)));
+            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
+
+            var dados = await generico.Select(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere));
+            if (dados?.Rows?.Count >= 1)
+                return false;
+            return true;
+
         }
 
         public async Task<IList<DiasSemana>> DiasSemana(DiasSemana dias)
         {
             IList<DiasSemana> diasSemana = new List<DiasSemana>();
-            var dados = await generico.Select(await generico.MontarSelect<DiasSemana>(dias, null, false));
+            var dados = await generico.Select(await generico.MontarSelectObjeto<DiasSemana>(dias, null, false));
             diasSemana = (from DataRow dr in dados.Rows
                           select new DiasSemana()
                           {
@@ -42,7 +78,7 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
         public async Task<IList<Horario>> Horarios()
         {
             IList<Horario> horariosDisponiveis = new List<Horario>();
-            var dados = await generico.Select(await generico.MontarSelect<Estabelecimento>(new Estabelecimento(), null, false));
+            var dados = await generico.Select(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento(), null, false));
             if (dados?.Rows.Count >= 1)
             {
                 string horarioAbertura = dados.Rows[0]["HoraAbertura"].ToString();
@@ -77,6 +113,56 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                 });
             }
             return horariosDisponiveis;
+        }
+
+        public async Task<IList<Agendamento>> AgendamentosDiario()
+        {
+            IList<Agendamento> listaAgendamento = new List<Agendamento>();
+            Agendamento agendamento = new Agendamento();
+             var listaSelect = new List<(bool isInt, string nome)>();
+            var listaWhere = new List<(bool isInt, string nome, string valor)>();
+            var listaJoin = new List<(string, string, string)>();
+
+            listaSelect.Add((false, nameof(agendamento.Horario)));
+            listaSelect.Add((true, nameof(agendamento.Preco)));
+            listaSelect.Add((true, nameof(agendamento.Nome)));
+
+            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
+            listaWhere.Add((true, nameof(agendamento.Codigo), RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek)));
+
+            var dados = await generico.Select(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere, true));
+            listaAgendamento = (from DataRow dr in dados.Rows
+                          select new Agendamento()
+                          {
+                              Nome = dr["Nome"].ToString(),
+                              Horario = dr["Horario"].ToString(),
+                              Preco = decimal.Parse(dr["Preco"].ToString())
+                          }).ToList();
+
+            return listaAgendamento;
+        }
+
+        public string RetornarDiaDaSemanaCodigo(DayOfWeek dayOfWeek)
+        {
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    return "7";
+                case DayOfWeek.Monday:
+                    return "1";
+                case DayOfWeek.Tuesday:
+                    return "2";
+                case DayOfWeek.Wednesday:
+                    return "3";
+                case DayOfWeek.Thursday:
+                    return "4";
+                case DayOfWeek.Friday:
+                    return "5";
+                case DayOfWeek.Saturday:
+                    return "6";
+                default:
+                    return "";
+            }
         }
     }
 }

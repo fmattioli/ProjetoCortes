@@ -8,44 +8,48 @@
     <div class="col s12 m8 l6 offset-md-2 offset-l3">
         <div class="card" style="margin-top: 80px; border-radius: 15px;">
             <div class="card-content">
-                <div class="form-field">
-                    <div class="row">
-                        <div class="input-field col s5">
-                            <input asp-for="Nome" id="nome" type="text" class="validate">
-                            <label asp-for="Nome">Nome</label>
-                            <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
+                <form id="formAgendamento">
+                    <div class="form-field">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input asp-for="Nome" id="nome" type="text" placeholder="Clique para editar" class="validate">
+                                <label for="nome">Nome</label>
+                                <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
+                            </div>
                         </div>
-                        <div class="input-field col s4">
-                            <input asp-for="Endereco" id="endereco" type="text" class="validate">
-                            <label asp-for="Endereco">Endereco</label>
-                            <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
-                        </div>
-                        <div class="input-field col s3">
-                            <input asp-for="Preco" id="preco" type="text" class="validate">
-                            <label asp-for="Preco">Preço</label>
-                            <span asp-validation-for="Preco" class="red-text text-darken-4"></span>
+                        <div class="row">
+                            <div class="input-field col s9">
+                                <input asp-for="Endereco" id="endereco" type="text" placeholder="Clique para editar" class="validate">
+                                <label for="password">Endereço</label>
+                                <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s3">
+                                <input asp-for="Preco" id="preco" type="text" class="validate">
+                                <label asp-for="Preco">Preço</label>
+                                <span asp-validation-for="Preco" class="red-text text-darken-4"></span>
+                            </div>
                         </div>
 
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select id="ddlDiaSemana" asp-for="DiaSelecionado" asp-items="@Model.Dias">
+                                    <option value="0">Selecione o dia</option>
+                                </select>
+                                <label>Dia da semana: </label>
+                                <span asp-validation-for="DiaSelecionado" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s6">
+                                <select id="ddlHorario" asp-for="HorarioSelecionado" asp-items="@Model.Horarios">
+                                    <option value="0">Selecione o horário</option>
+                                </select>
+                                <label>Horário: </label>
+                                <span asp-validation-for="HorarioSelecionado" class="red-text text-darken-4"></span>
+                            </div>
+
+
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <select id="ddlDiaSemana" asp-for="DiaSelecionado" asp-items="@Model.Dias">
-                                <option value="0">Selecione o dia</option>
-                            </select>
-                            <label>Dia da semana: </label>
-                            <span asp-validation-for="DiaSelecionado" class="red-text text-darken-4"></span>
-                        </div>
-                        <div class="input-field col s6">
-                            <select id="ddlHorario" asp-for="HorarioSelecionado" asp-items="@Model.Horarios">
-                                <option value="0">Selecione o horário</option>
-                            </select>
-                            <label>Horário: </label>
-                            <span asp-validation-for="HorarioSelecionado" class="red-text text-darken-4"></span>
-                        </div>
-
-
-                    </div>
-                </div>
+                </form>
 
                 <div class="row">
                     <div class="col s12">

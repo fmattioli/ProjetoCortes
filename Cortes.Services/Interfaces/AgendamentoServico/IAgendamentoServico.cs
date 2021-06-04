@@ -11,5 +11,8 @@ namespace Cortes.Services.Interfaces.AgendamentoServico
     {
         public Task<AgendamentoViewModel> CarregarDropDowns();
         public Task<bool> ConfirmarAgendamento(AgendamentoViewModel agendamentoModel);
+        public Task<bool> ValidarAgendamento(AgendamentoViewModel model);
+        public Task<IList<AgendamentoViewModel>> AgendamentosDiario();
+
     }
 }

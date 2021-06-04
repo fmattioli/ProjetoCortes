@@ -1,6 +1,93 @@
-﻿@{
+﻿@model IList<Cortes.Services.ViewModels.AgendamentoViewModel>
+@{
     Layout = null;
     ViewData["Title"] = "Login";
 }
 
 <partial name="_Menu" />
+
+<div class="row">
+    <div class="col s12 m8 l4 offset-md-2 offset-l4">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-action black lighten-1 white-text darken-2">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <span class="white-text text-darken-2">Agendamentos do dia</span> <span class="white-text text-darken-1"></span>
+                    </div>
+                </div>
+            </div>
+
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Horário</th>
+                        <th>Preço</th>
+                        <th>Compareceu?</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HorarioSelecionado)
+                            </td>
+                            <td>
+                                @item.Preco.ToString("C")
+                            </td>
+                            <td>
+                                <a class="btn-floating black darken-4 btnAprovar tooltip" onclick="AprovarUsuario('@item.Id')" data-position="right" data-tooltip="Aprovar usuário"><i class="medium material-icons icon-black">thumb_up</i></a>
+                                <a class="btn-floating black darken-4 btnAprovar tooltip" onclick="AprovarUsuario('@item.Id')" data-position="right" data-tooltip="Aprovar usuário"><i class="medium material-icons icon-black">thumb_down</i></a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col s4">
+
+        <div class="collection with-header collectionpie">
+            <div class="collection-header">
+                <h6 class="center-align"><strong>Cortes diário</strong> </h6>
+            </div>
+
+            <div class="collection-item">
+            </div>
+        </div>
+    </div>
+    <div class="col s4">
+        <div class="collection with-header collectionpie">
+            <div class="collection-header">
+                <h6 class="center-align"><strong>Cortes mensal</strong> </h6>
+            </div>
+
+            <div class="collection-item">
+            </div>
+        </div>
+    </div>
+    <div class="col s4">
+        <div class="collection with-header collectionpie">
+            <div class="collection-header">
+                <h6 class="center-align"><strong>Financeiro</strong> </h6>
+            </div>
+
+            <div class="collection-item">
+            </div>
+        </div>
+    </div>
+
+</div>

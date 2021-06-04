@@ -88,10 +88,15 @@ nav {
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
+    transform: none;
     font-size: 16px;
     background-color: #000000 !important;
     color: #FFFFFF !important;
     display: block;
     line-height: 22px;
     padding: 14px 16px;
+}
+.select-wrapper * {
+    transition: none !important;
+    transform: none !important;
 }
