@@ -61,6 +61,9 @@ namespace Cortes.Infra.Comum
 
         public async Task<string> MontarInsert<T>(T objeto, IList<string> desconsiderarColuna = null, bool plural = true)
         {
+            if (desconsiderarColuna is null)
+                desconsiderarColuna = new List<string>();
+
             string sqlInsert = "";
             await Task.Run(() =>
             {
@@ -74,43 +77,56 @@ namespace Cortes.Infra.Comum
                 else
                     SQL.AppendLine($"INSERT INTO {objeto.GetType().Name}");
                 SQL.AppendLine($"(");
-                foreach (var item in prop)
-                {
-                    if (!desconsiderarColuna.Contains(item.Name))
-                    {
-                        if (item.Name != lastItem)
-                            SQL.AppendLine($"{item.Name},");
-                        else
-                            SQL.AppendLine($"{item.Name}");
-                    }
-                }
-                SQL.AppendLine($")");
-                SQL.AppendLine($"VALUES");
-                SQL.AppendLine($"(");
-                foreach (var item in prop)
-                {
-                    if (!desconsiderarColuna.Contains(item.Name))
-                    {
-                        if (item.Name != lastItem)
-                        {
-                            if (item.PropertyType.FullName.Contains("String"))
-                                SQL.AppendLine($"'{item.GetValue(objeto)}',");
-                            else
-                                SQL.AppendLine($"{item.GetValue(objeto)},");
-                        }
-                        else
-                        {
-                            if (item.PropertyType.FullName.Contains("String"))
-                                SQL.AppendLine($"'{item.GetValue(objeto)}'");
-                            else
-                                SQL.AppendLine($"{item.GetValue(objeto).ToString().Replace(",", ".")}");
-                        }
-                    }
-                }
+                MontarSQLColunasInsert(desconsiderarColuna, prop, lastItem);
+                MontarSQLValuesInsert(objeto, desconsiderarColuna, prop, lastItem);
                 SQL.AppendLine($")");
                 sqlInsert = SQL.ToString();
             });
             return sqlInsert;
+        }
+
+        private void MontarSQLValuesInsert<T>(T objeto, IList<string> desconsiderarColuna, PropertyInfo[] prop, string lastItem)
+        {
+            foreach (var item in prop)
+            {
+                if (desconsiderarColuna is not null && !desconsiderarColuna.Contains(item.Name))
+                {
+                    if (item.Name != lastItem)
+                    {
+                        if (item.PropertyType.FullName.Contains("String"))
+                            SQL.AppendLine($"'{item.GetValue(objeto)}',");
+                        else
+                            SQL.AppendLine($"{item.GetValue(objeto)},");
+                    }
+                    else
+                    {
+                        if (item.PropertyType.FullName.Contains("String"))
+                            SQL.AppendLine($"'{item.GetValue(objeto)}'");
+                        else
+                            SQL.AppendLine($"{item.GetValue(objeto).ToString().Replace(",", ".")}");
+                    }
+                    
+                }
+                
+            }
+        }
+
+        private void MontarSQLColunasInsert(IList<string> desconsiderarColuna, PropertyInfo[] prop, string lastItem)
+        {
+            foreach (var item in prop)
+            {
+                if (desconsiderarColuna is not null && !desconsiderarColuna.Contains(item.Name))
+                {
+                    if (item.Name != lastItem)
+                        SQL.AppendLine($"{item.Name},");
+                    else
+                        SQL.AppendLine($"{item.Name}");
+                }
+                
+            }
+            SQL.AppendLine($")");
+            SQL.AppendLine($"VALUES");
+            SQL.AppendLine($"(");
         }
 
         public async Task<string> MontarSelectObjeto<T>(T objeto, IList<string> temWhere, bool plural = true)

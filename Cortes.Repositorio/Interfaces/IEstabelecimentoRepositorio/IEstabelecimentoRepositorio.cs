@@ -11,5 +11,6 @@ namespace Cortes.Repositorio.Interfaces.IEstabelecimentoRepositorio
     {
         Task<bool> ExisteConfiguracao(Estabelecimento estabelecimento);
         Task<bool> RealizarConfiguracao(Estabelecimento estabelecimento);
+        Task<IList<Horario>> Horarios();
     }
 }

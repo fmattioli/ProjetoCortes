@@ -1,5 +1,6 @@
 ﻿using Cortes.Dominio.Entidades;
 using Cortes.Infra.Comum;
+using Cortes.Repositorio.Interfaces.IAgendamentoRepositorio;
 using Cortes.Repositorio.Interfaces.IEstabelecimentoRepositorio;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -14,9 +15,11 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
     {
         private StringBuilder SQL = new StringBuilder();
         private Generico generico;
-        public EstabelecimentoRepositorio(IConfiguration config)
+        private IAgendamentoRepositorio agendamentoRepositorio;
+        public EstabelecimentoRepositorio(IConfiguration config, IAgendamentoRepositorio agendamentoRepositorio)
         {
             generico = new Generico(config);
+            this.agendamentoRepositorio = agendamentoRepositorio;
         }
 
         public async Task<bool> ExisteConfiguracao(Estabelecimento estabelecimento)
@@ -80,14 +83,92 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                     HoraFechamento = "23:00"
                 };
 
-                await generico.RunSQLCommand(await generico.MontarInsert<Estabelecimento>(estabelecimento, null,false));
+                await generico.RunSQLCommand(await generico.MontarInsert<Estabelecimento>(estabelecimento, null, false));
+
+
+                //Agendamentos dados fakes.
+                for (int i = 1; i < 7; i++)
+                {
+                    foreach (var item in await Horarios())
+                    {
+                        var listWhere = new List<(bool isInt, string nome, string valor)>();
+                        listWhere.Add((true, "Codigo", i.ToString()));
+                        var dt = await generico.Select(await generico.MontarSelectGetId("DiasSemana", listWhere));
+                        string DiaSemana_Id = dt.Rows[0]["Id"].ToString();
+
+                        listWhere = new List<(bool isInt, string nome, string valor)>();
+                        listWhere.Add((false, "Nome", "Felipe"));
+
+                        dt = await generico.Select(await generico.MontarSelectGetId("Usuarios", listWhere));
+                        string Usuario_Id = dt.Rows[0]["Id"].ToString();
+
+                        Agendamento agendamento = new Agendamento
+                        {
+                            Codigo = int.Parse(agendamentoRepositorio.RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek)),
+                            Endereco = "RUA FLOR DE MADEIRA" + new Random().Next(0, 100),
+                            DiaSemana_Id = DiaSemana_Id,
+                            Horario = item.Hora,
+                            Nome = "CLIENTE " + new Random().Next(0, 100),
+                            Preco = 35.00M,
+                            Usuario_Id = Usuario_Id
+
+                        };
+
+                        //Caso não queira inserir uma coluna no insert
+                        List<string> listaDesconsiderar = new List<string>();
+                        listaDesconsiderar.Add("Codigo");
+
+                        await generico.RunSQLCommand(await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true));
+                    }
+
+                }
                 return true;
             }
             catch
             {
                 return false;
             }
-            
+
+        }
+
+        public async Task<IList<Horario>> Horarios()
+        {
+            IList<Horario> horariosDisponiveis = new List<Horario>();
+            var dados = await generico.Select(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento(), null, false));
+            if (dados?.Rows.Count >= 1)
+            {
+                string horarioAbertura = dados.Rows[0]["HoraAbertura"].ToString();
+                string horarioFechamento = dados.Rows[0]["HoraFechamento"].ToString();
+                int codigo = 1;
+                horariosDisponiveis.Add(new Horario
+                {
+                    Codigo = codigo,
+                    Hora = horarioAbertura
+                });
+
+                int Abertura = int.Parse(horarioAbertura.Replace(":", ""));
+                int Fechamento = int.Parse(horarioFechamento.Replace(":", ""));
+
+                while (Abertura < Fechamento)
+                {
+                    codigo++;
+                    var result = Convert.ToDateTime(horariosDisponiveis[horariosDisponiveis.Count - 1].Hora).AddMinutes(30).ToString("HH:mm");
+                    horariosDisponiveis.Add(new Horario
+                    {
+                        Codigo = codigo,
+                        Hora = result
+                    });
+
+                    Abertura = int.Parse(result.Replace(":", ""));
+                }
+
+                horariosDisponiveis.Add(new Horario
+                {
+                    Codigo = codigo++,
+                    Hora = horarioFechamento.ToString()
+                });
+            }
+            return horariosDisponiveis;
         }
     }
 }
