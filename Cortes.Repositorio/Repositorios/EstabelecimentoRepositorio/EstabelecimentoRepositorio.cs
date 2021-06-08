@@ -110,7 +110,9 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                             Horario = item.Hora,
                             Nome = "CLIENTE " + new Random().Next(0, 100),
                             Preco = 35.00M,
-                            Usuario_Id = Usuario_Id
+                            Usuario_Id = Usuario_Id,
+                            DataCorte = DateTime.Now,
+                            Compareceu = 0
 
                         };
 

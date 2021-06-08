@@ -41,6 +41,30 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             return false;
         }
 
+        public async Task<bool> LancarAgendamento(Agendamento agendamento)
+        {
+            try
+            {
+                //Configurar Cláusula WHERE
+                var listWhere = new List<(bool isInt, string nome, string valor)>();
+                listWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
+
+                //Obter Id
+                var dt = await generico.Select(await generico.MontarSelectGetId("DiasSemana", listWhere));
+                agendamento.DiaSemana_Id = dt.Rows[0]["Id"].ToString();
+
+                //Marcar corte
+                List<string> listaDesconsiderar = new List<string>();
+                listaDesconsiderar.Add("Codigo");
+                await generico.RunSQLCommand(await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true));
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> ValidarAgendamento(Agendamento agendamento)
         {
             var listaWhere = new List<(bool isInt, string nome, string valor)>();
@@ -117,29 +141,39 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
 
         public async Task<IList<Agendamento>> AgendamentosDiario()
         {
-            IList<Agendamento> listaAgendamento = new List<Agendamento>();
-            Agendamento agendamento = new Agendamento();
-             var listaSelect = new List<(bool isInt, string nome)>();
-            var listaWhere = new List<(bool isInt, string nome, string valor)>();
-            var listaJoin = new List<(string, string, string)>();
+            try
+            {
+                IList<Agendamento> listaAgendamento = new List<Agendamento>();
+                Agendamento agendamento = new Agendamento();
+                var listaSelect = new List<(bool isInt, string nome)>();
+                var listaWhere = new List<(bool isInt, string nome, string valor)>();
+                var listaJoin = new List<(string, string, string)>();
 
-            listaSelect.Add((false, nameof(agendamento.Horario)));
-            listaSelect.Add((true, nameof(agendamento.Preco)));
-            listaSelect.Add((true, nameof(agendamento.Nome)));
+                listaSelect.Add((false, nameof(agendamento.Horario)));
+                listaSelect.Add((true, nameof(agendamento.Preco)));
+                listaSelect.Add((true, nameof(agendamento.Nome)));
+                listaSelect.Add((true, "Agendamentos.Id"));
 
-            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
-            listaWhere.Add((true, nameof(agendamento.Codigo), RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek)));
+                listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
+                listaWhere.Add((true, nameof(agendamento.Codigo), RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek)));
+                listaWhere.Add((true, nameof(agendamento.Compareceu), "0"));
 
-            var dados = await generico.Select(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere, true));
-            listaAgendamento = (from DataRow dr in dados.Rows
-                          select new Agendamento()
-                          {
-                              Nome = dr["Nome"].ToString(),
-                              Horario = dr["Horario"].ToString(),
-                              Preco = decimal.Parse(dr["Preco"].ToString())
-                          }).ToList();
+                var dados = await generico.Select(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere, true));
+                listaAgendamento = (from DataRow dr in dados.Rows
+                                    select new Agendamento()
+                                    {
+                                        Nome = dr["Nome"].ToString(),
+                                        Horario = dr["Horario"].ToString(),
+                                        Preco = decimal.Parse(dr["Preco"].ToString()),
+                                        Id = dr["Id"].ToString()
+                                    }).ToList();
 
-            return listaAgendamento;
+                return listaAgendamento;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public string RetornarDiaDaSemanaCodigo(DayOfWeek dayOfWeek)
@@ -164,5 +198,24 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                     return "";
             }
         }
+
+        public async Task<bool> CompareceuAgendamento(string Id, int compareceu)
+        {
+            try
+            {
+                var listaUpdate = new List<(bool isInt, string campo, string valor)>();
+                var listaWhere = new List<(bool isInt, string campo, string valor)>();
+                listaUpdate.Add((false, "Compareceu", compareceu.ToString()));
+                listaWhere.Add((false, nameof(Id), Id));
+                await generico.RunSQLCommand(await generico.Atualizar("Agendamentos", listaUpdate, listaWhere));
+                return true;
+            } 
+            catch
+            {
+                return false;
+            }
+        }
+
+        
     }
 }

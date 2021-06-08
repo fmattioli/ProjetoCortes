@@ -32,7 +32,7 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
                 await generico.RunSQLCommand(await generico.MontarInsert<Usuario>(usuario));
                 return usuario;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }

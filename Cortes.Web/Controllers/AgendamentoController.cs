@@ -28,12 +28,29 @@ namespace Cortes.Web.Controllers
             var model = await agendamentoServico.CarregarDropDowns();
             return View(model);
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> FazerLancamento(string Id, [FromServices] IAgendamentoServico agendamentoServico)
+        {
+            TempData["Id"] = Id;
+            var model = await agendamentoServico.CarregarDropDowns();
+            return View(model);
+        }
+
 
         [Authorize]
         public async Task<JsonResult> RealizarAgendamento(string model, [FromServices] IAgendamentoServico agendamentoServico)
         {
             AgendamentoViewModel agendamentoModel  = JsonConvert.DeserializeObject<AgendamentoViewModel>(model);
             var retorno = await agendamentoServico.ConfirmarAgendamento(agendamentoModel);
+            return Json(retorno);
+        }
+        
+        [Authorize]
+        public async Task<JsonResult> RealizarLancamento(string model, [FromServices] IAgendamentoServico agendamentoServico)
+        {
+            AgendamentoViewModel agendamentoModel  = JsonConvert.DeserializeObject<AgendamentoViewModel>(model);
+            var retorno = await agendamentoServico.RealizarLancamento(agendamentoModel);
             return Json(retorno);
         }
 
@@ -45,6 +62,20 @@ namespace Cortes.Web.Controllers
             return Json(retorno);
         }
 
+
+        [Authorize]
+        public async Task<JsonResult> ConfirmarPresenca(string Id, [FromServices] IAgendamentoServico agendamentoServico)
+        {
+            await agendamentoServico.CompareceuAgendamento(Id, 1);
+            return Json(true);
+        }
+
+        [Authorize]
+        public async Task<JsonResult> FaltouPresenca(string Id, [FromServices] IAgendamentoServico agendamentoServico)
+        {
+            await agendamentoServico.CompareceuAgendamento(Id, 2);
+            return Json(true);
+        }
 
     }
 }

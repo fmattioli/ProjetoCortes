@@ -16,5 +16,7 @@ namespace Cortes.Dominio.Entidades
 		public string Horario { get; set; }
 		public string Usuario_Id { get; set; }
 		public decimal Preco { get; set; }
-	}
+        public DateTime DataCorte { get; set; }
+        public int Compareceu { get; set; }
+    }
 }

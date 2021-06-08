@@ -29,6 +29,7 @@ namespace Cortes.Services.Servicos
             {
                 listaAgendamento.Add(new AgendamentoViewModel()
                 {
+                    Id = item.Id,
                     Nome = item.Nome,
                     HorarioSelecionado = item.Horario,
                     Preco = item.Preco
@@ -45,6 +46,11 @@ namespace Cortes.Services.Servicos
             return agendamento;
         }
 
+        public async Task<bool> CompareceuAgendamento(string Id, int compareceu)
+        {
+            return await agendamentoRepositorio.CompareceuAgendamento(Id, compareceu);
+        }
+
         public async Task<bool> ConfirmarAgendamento(AgendamentoViewModel model)
         {
             Agendamento agendamento = new Agendamento
@@ -54,10 +60,29 @@ namespace Cortes.Services.Servicos
                 Horario = model.HorarioSelecionado,
                 Usuario_Id = model.Usuario_Id,
                 Nome = model.Nome,
-                Preco = model.Preco
+                Preco = model.Preco,
+                DataCorte = DateTime.Now,
+                Compareceu = 0
             };
 
             return await agendamentoRepositorio.ConfirmarAgendamento(agendamento);
+        }
+
+        public async Task<bool> RealizarLancamento(AgendamentoViewModel agendamentoModel)
+        {
+            Agendamento agendamento = new Agendamento
+            {
+                Codigo = agendamentoModel.DiaSelecionado,
+                Endereco = agendamentoModel.Endereco,
+                Horario = agendamentoModel.HorarioSelecionado,
+                Usuario_Id = agendamentoModel.Usuario_Id,
+                Nome = agendamentoModel.Nome,
+                Preco = agendamentoModel.Preco,
+                DataCorte = DateTime.Now,
+                Compareceu = 1
+            };
+
+            return await agendamentoRepositorio.LancarAgendamento(agendamento);
         }
 
         public async Task<bool> ValidarAgendamento(AgendamentoViewModel model)

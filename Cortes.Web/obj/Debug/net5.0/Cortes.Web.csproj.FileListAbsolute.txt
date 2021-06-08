@@ -402,3 +402,4 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Microsoft.AspNetCore
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.MvcApplicationPartsAssemblyInfo.cs
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Agendamento\VerificarAgendamento.cshtml.g.cs
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Agendamento\FazerLancamento.cshtml.g.cs

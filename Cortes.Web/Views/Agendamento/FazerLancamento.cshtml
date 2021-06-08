@@ -1,0 +1,66 @@
+﻿@model Cortes.Services.ViewModels.AgendamentoViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+<partial name="_Menu" />
+<div class="row">
+    <div class="col s12 m8 l6 offset-md-2 offset-l3">
+        <div class="card" style="margin-top: 80px; border-radius: 15px;">
+            <div class="card-content">
+                <form id="formAgendamento">
+                    <div class="form-field">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input asp-for="Nome" id="nome" type="text" placeholder="Clique para editar" class="validate">
+                                <label for="nome">Nome</label>
+                                <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s9">
+                                <input asp-for="Endereco" id="endereco" type="text" placeholder="Clique para editar" class="validate">
+                                <label for="password">Endereço</label>
+                                <span asp-validation-for="Endereco" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s3">
+                                <input asp-for="Preco" id="preco" type="text" class="validate">
+                                <label asp-for="Preco">Preço</label>
+                                <span asp-validation-for="Preco" class="red-text text-darken-4"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select id="ddlDiaSemana" asp-for="DiaSelecionado" asp-items="@Model.Dias">
+                                    <option value="0">Selecione o dia</option>
+                                </select>
+                                <label>Dia da semana: </label>
+                                <span asp-validation-for="DiaSelecionado" class="red-text text-darken-4"></span>
+                            </div>
+                            <div class="input-field col s6">
+                                <select id="ddlHorario" asp-for="HorarioSelecionado" asp-items="@Model.Horarios">
+                                    <option value="0">Selecione o horário</option>
+                                </select>
+                                <label>Horário: </label>
+                                <span asp-validation-for="HorarioSelecionado" class="red-text text-darken-4"></span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col s12">
+                        <button onclick="FazerLancamento()" class="btn-large waves-effect waves-dark black darken-4" style="width:100%;">Agendar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/OperacoesAgendamento.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>

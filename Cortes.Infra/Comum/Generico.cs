@@ -36,7 +36,7 @@ namespace Cortes.Infra.Comum
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -93,14 +93,14 @@ namespace Cortes.Infra.Comum
                 {
                     if (item.Name != lastItem)
                     {
-                        if (item.PropertyType.FullName.Contains("String"))
+                        if (item.PropertyType.FullName.Contains("String") || item.PropertyType.FullName.Contains("DateTime") || item.PropertyType.FullName.Contains("Boolean"))
                             SQL.AppendLine($"'{item.GetValue(objeto)}',");
                         else
-                            SQL.AppendLine($"{item.GetValue(objeto)},");
+                            SQL.AppendLine($"{item.GetValue(objeto).ToString().Replace(",", ".")},");
                     }
                     else
                     {
-                        if (item.PropertyType.FullName.Contains("String"))
+                        if (item.PropertyType.FullName.Contains("String") || item.PropertyType.FullName.Contains("DateTime") || item.PropertyType.FullName.Contains("Boolean"))
                             SQL.AppendLine($"'{item.GetValue(objeto)}'");
                         else
                             SQL.AppendLine($"{item.GetValue(objeto).ToString().Replace(",", ".")}");
@@ -213,7 +213,7 @@ namespace Cortes.Infra.Comum
                         else
                         {
                             string valor = item.valor;
-                            SQL.AppendLine($"AND {item.nome} = {valor}");
+                            SQL.AppendLine($"AND {item.nome} = '{valor}'");
                         }
                     }
                 }
@@ -241,6 +241,58 @@ namespace Cortes.Infra.Comum
             });
 
             return SQL.ToString();
+        }
+
+
+        public async Task<string> Atualizar(string tableName, IList<(bool isInt, string campo, string valor)> campos, IList<(bool isInt, string nome, string valor)> temWhere)
+        {
+            string sqlUpdate = "";
+            await Task.Run(() =>
+            {
+                SQL.Clear();
+                string lastItem = campos[campos.Count - 1].campo;
+                SQL.AppendLine($"UPDATE ");
+                SQL.AppendLine($"{tableName} ");
+                SQL.AppendLine($"SET ");
+                foreach (var item in campos)
+                {
+                    if (item.campo != lastItem)
+                    {
+                        if(!item.isInt)
+                            SQL.AppendLine($"{item.campo} = '{item.valor}',");
+                        else
+                            SQL.AppendLine($"{item.campo} = {item.valor},");
+                    }
+                    else
+                    {
+                        if (!item.isInt)
+                            SQL.AppendLine($"{item.campo} = '{item.valor}'");
+                        else
+                            SQL.AppendLine($"{item.campo} = {item.valor}");
+                    }
+                }
+               
+                if (temWhere != null)
+                {
+                    SQL.AppendLine($"WHERE 1 = 1");
+                    foreach (var item in temWhere)
+                    {
+                        if (!item.isInt)
+                        {
+                            string valor = item.valor;
+                            SQL.AppendLine($"AND {item.nome} = '{valor}'");
+                        }
+                        else
+                        {
+                            string valor = item.valor;
+                            SQL.AppendLine($"AND {item.nome} = {valor}");
+                        }
+                    }
+                }
+
+                sqlUpdate = SQL.ToString();
+            });
+            return sqlUpdate;
         }
     }
 }

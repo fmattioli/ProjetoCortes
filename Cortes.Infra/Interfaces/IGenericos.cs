@@ -15,5 +15,6 @@ namespace Cortes.Infra.Interfaces
         Task<string> MontarSelectObjeto<T>(T objeto, IList<string> hasWhere, bool plural = true);
         Task<string> MontarSelectWithJoin(string tableName, IList<(string tabela, string tabelaJoin, string colunaJoin)> join, IList<(bool isInt, string nome)> fields, IList<(bool isInt, string nome, string valor)> temWhere, bool plural = true);
         Task<string> MontarSelectGetId(string tableName, IList<(bool isInt, string nome, string valor)> temWhere);
+        Task<string> Atualizar(string tableName, IList<(bool isInt, string campo, string valor)> campos, IList<(bool isInt, string nome, string valor)> temWhere);
     }
 }
