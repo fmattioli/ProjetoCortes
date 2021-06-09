@@ -209,13 +209,43 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                 listaWhere.Add((false, nameof(Id), Id));
                 await generico.RunSQLCommand(await generico.Atualizar("Agendamentos", listaUpdate, listaWhere));
                 return true;
-            } 
+            }
             catch
             {
                 return false;
             }
         }
 
-        
+        public async Task<(int CortesAbertos, int CortesFinalizado)> PreencherGraficos()
+        {
+            var dia = RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek);
+            var listaSelect = new List<(bool isInt, string nome)>();
+            var listaWhere = new List<(bool isInt, string nome, string valor)>();
+            var listaJoin = new List<(string, string, string)>();
+
+            listaSelect.Add((false, "Nome"));
+            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
+            listaWhere.Add((true, "Codigo", dia));
+            listaWhere.Add((true, "CONVERT(VARCHAR,DataCorte,103)", DateTime.Now.ToString("dd/MM/yyyy")));
+            listaWhere.Add((true, "Compareceu", "0"));
+
+            var cortesAbertos = await generico.Select(await generico.MontarSelectWithJoin("Agendamento", listaJoin, listaSelect, listaWhere, true));
+
+            dia = RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek);
+            listaSelect = new List<(bool isInt, string nome)>();
+            listaWhere = new List<(bool isInt, string nome, string valor)>();
+            listaJoin = new List<(string, string, string)>();
+
+            listaSelect.Add((false, "Nome"));
+            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
+            listaWhere.Add((true, "Codigo", dia));
+            listaWhere.Add((true, "CONVERT(VARCHAR,DataCorte,103)", DateTime.Now.ToString("dd/MM/yyyy")));
+            listaWhere.Add((true, "Compareceu", "1"));
+
+            var cortesFinalizados = await generico.Select(await generico.MontarSelectWithJoin("Agendamento", listaJoin, listaSelect, listaWhere, true));
+
+            var retorno = (cortesAbertos.Rows.Count, cortesFinalizados.Rows.Count);
+            return retorno;
+        }
     }
 }

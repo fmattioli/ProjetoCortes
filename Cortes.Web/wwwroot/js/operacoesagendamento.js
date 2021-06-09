@@ -8,6 +8,8 @@
             affixesStay: false
         }).attr('maxlength', maxLength).trigger('mask.maskMoney');
     }
+
+    GraficosCortesDiariosXCortesFinalizados();
     
 });
 
@@ -121,6 +123,7 @@ function CortouCabelo(Id) {
         success: function (data) {
             if (data === true) {
                 $("#" + Id).remove();
+                GraficosCortesDiariosXCortesFinalizados();
             }
             else {
                 
@@ -146,7 +149,8 @@ function NaoCortouCabelo(Id) {
         data: { Id },
         success: function (data) {
             if (data === true) {
-                $("#"+Id).remove();
+                $("#" + Id).remove();
+                GraficosCortesDiariosXCortesFinalizados();
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -234,4 +238,38 @@ function ValidarCamposAgendamento(modelObj) {
     }
 
     return retorno;
+}
+
+$(document).ready(function () {
+    GraficosCortesDiariosXCortesFinalizados();
+
+});
+
+function GraficosCortesDiariosXCortesFinalizados() {
+    $.ajax({
+        url: '/Usuarios/GraficosCortesDiario',
+        method: 'GET',
+        success: function (dados) {
+            new Chart(document.getElementById("CortesDiario"), {
+                type: 'pie',
+                data: {
+                    labels: ["Cortes agendados", "Cortes finalizados"],
+
+                    datasets: [{
+                        label: "Total de protocolos em andamento e finalizados",
+                        data: [dados.cortesAbertos, dados.cortesFinalizados],
+                        backgroundColor: ["#0091ea", "#c62828"]
+                    }]
+                },
+
+                options: {
+                    legend: {
+                        labels: {
+                            usePointStyle: true
+                        }
+                    }
+                }
+            });
+        }
+    });
 }

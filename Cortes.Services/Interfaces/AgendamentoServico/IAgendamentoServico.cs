@@ -15,6 +15,7 @@ namespace Cortes.Services.Interfaces.AgendamentoServico
         public Task<bool> ValidarAgendamento(AgendamentoViewModel model);
         public Task<bool> CompareceuAgendamento(string Id, int compareceu);
         public Task<IList<AgendamentoViewModel>> AgendamentosDiario();
+        public Task<GraficoCortesViewModel> GraficosCortesDiarios();
 
     }
 }

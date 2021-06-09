@@ -17,6 +17,7 @@ namespace Cortes.Repositorio.Interfaces.IAgendamentoRepositorio
         Task<bool> CompareceuAgendamento(string Id, int compareceu);
         Task<bool> ValidarAgendamento(Agendamento agendamento);
         string RetornarDiaDaSemanaCodigo(DayOfWeek dayOfWeek);
+        Task<(int CortesAbertos, int CortesFinalizado)> PreencherGraficos();
         
     }
 }

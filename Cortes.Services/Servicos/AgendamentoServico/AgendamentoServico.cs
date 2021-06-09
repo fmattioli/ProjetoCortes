@@ -68,6 +68,16 @@ namespace Cortes.Services.Servicos
             return await agendamentoRepositorio.ConfirmarAgendamento(agendamento);
         }
 
+        public async Task<GraficoCortesViewModel> GraficosCortesDiarios()
+        {
+            var resultado = await agendamentoRepositorio.PreencherGraficos();
+            return new GraficoCortesViewModel
+            {
+                CortesAbertos = resultado.CortesAbertos,
+                CortesFinalizados = resultado.CortesFinalizado
+            };
+        }
+
         public async Task<bool> RealizarLancamento(AgendamentoViewModel agendamentoModel)
         {
             Agendamento agendamento = new Agendamento
@@ -79,7 +89,7 @@ namespace Cortes.Services.Servicos
                 Nome = agendamentoModel.Nome,
                 Preco = agendamentoModel.Preco,
                 DataCorte = DateTime.Now,
-                Compareceu = 1
+                Compareceu = 3
             };
 
             return await agendamentoRepositorio.LancarAgendamento(agendamento);

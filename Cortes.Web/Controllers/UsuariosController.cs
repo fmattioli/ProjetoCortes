@@ -22,5 +22,11 @@ namespace Cortes.Web.Controllers
             return View(await agendamentoServico.AgendamentosDiario());
         }
 
+        public async Task<JsonResult> GraficosCortesDiario([FromServices] IAgendamentoServico agendamentoServico)
+        {
+            var resultado = await agendamentoServico.GraficosCortesDiarios();
+            return Json(resultado);
+        }
+
     }
 }
