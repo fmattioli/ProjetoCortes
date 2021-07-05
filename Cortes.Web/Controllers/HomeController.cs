@@ -26,7 +26,7 @@ namespace Cortes.Web.Controllers
                     if (!await estabelecimentoServico.ExisteConfiguracao())
                     {
                         //Configurações iniciais
-                        await estabelecimentoServico.RealizarConfiguracao();
+                        await estabelecimentoServico.RealizarConfiguracao(null);
                     }
                     TempData["Token"] = usuario.Token;
                     TempData["Nome"] = usuario.Nome;

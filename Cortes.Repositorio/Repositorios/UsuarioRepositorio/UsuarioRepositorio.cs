@@ -1,6 +1,7 @@
 ﻿using Cortes.Dominio.Entidades;
 using Cortes.Infra.Comum;
 using Cortes.Repositorio.Interfaces.IUsuarioRepositorio;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        
-        private StringBuilder SQL = new StringBuilder();
         private Generico generico;
-        public UsuarioRepositorio(IConfiguration config)
+        private DbSession _db;
+        public UsuarioRepositorio(IConfiguration config, DbSession dbSession)
         {
             generico = new Generico(config);
+            _db = dbSession;
         }
 
         public async Task<Usuario> Atualizar(Usuario usuario)
@@ -29,7 +30,10 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
         {
             try
             {
-                await generico.RunSQLCommand(await generico.MontarInsert<Usuario>(usuario));
+                using (var conn = _db.Connection)
+                {
+                    await conn.QueryFirstOrDefaultAsync<Usuario>(await generico.MontarInsert<Usuario>(usuario));
+                }
                 return usuario;
             }
             catch
@@ -45,22 +49,11 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
 
         public async Task<Usuario> Obter(Usuario usuario, IList<string> hasWhere)
         {
-            var dados = await generico.Select(await generico.MontarSelectObjeto<Usuario>(usuario, hasWhere));
-            if (dados.Rows.Count >= 1)
+            using (var conn = _db.Connection)
             {
-                usuario = new Usuario()
-                {
-                    Nome = dados.Rows[0]["Nome"].ToString(),
-                    Email = dados.Rows[0]["Email"].ToString(),
-                    Senha = dados.Rows[0]["Senha"].ToString(),
-                    Telefone = dados.Rows[0]["Telefone"].ToString(),
-                    Endereco = dados.Rows[0]["Endereco"].ToString(),
-                    Id = dados.Rows[0]["Id"].ToString()
-                };
-
+                usuario = await conn.QueryFirstOrDefaultAsync<Usuario>("SELECT TOP 1 * FROM Usuarios");
                 return usuario;
             }
-            return null;
         }
     }
 }

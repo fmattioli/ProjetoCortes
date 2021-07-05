@@ -1,3 +1,4 @@
+using Cortes.Infra.Comum;
 using Cortes.Repositorio.Config;
 using Cortes.Services.Auth;
 using Cortes.Services.Config;
@@ -27,6 +28,7 @@ namespace Cortes.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<DbSession>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.ConfigurarRepositorios();
             services.ConfigurarServicos();

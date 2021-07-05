@@ -327,6 +327,17 @@
           "Cortes.Web.dll": {}
         }
       },
+      "Dapper/2.0.90": {
+        "runtime": {
+          "lib/net5.0/Dapper.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.90.36046"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Dapper.dll": {}
+        }
+      },
       "Humanizer.Core/2.2.0": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -2062,6 +2073,7 @@
       },
       "Cortes.Infra/1.0.0": {
         "dependencies": {
+          "Dapper": "2.0.90",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "System.Data.SqlClient": "4.8.2"
         },
@@ -3804,6 +3816,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Dapper/2.0.90": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e4YjOLJptnpwHIbP8HxjaYf7So9lhUC43rvvGMEkH4Q4CiVlm4rOxYDo0HyuHlMQKj0U5Ob/nCMm52TUhTaZQg==",
+      "path": "dapper/2.0.90",
+      "hashPath": "dapper.2.0.90.nupkg.sha512"
     },
     "Humanizer.Core/2.2.0": {
       "type": "package",

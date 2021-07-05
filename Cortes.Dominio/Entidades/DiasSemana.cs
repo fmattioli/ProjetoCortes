@@ -8,7 +8,7 @@ namespace Cortes.Dominio.Entidades
 {
     public class DiasSemana
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public int Codigo { get; set; }
         public string Dia { get; set; }
     }

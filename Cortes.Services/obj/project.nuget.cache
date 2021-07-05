@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "t8/oiUPDZUUQZ9rezKOxu7y1pCJof+mm2qgElVxZj+1c5azwNLaK7TJ9Ie9DiKFMoGvwrXg4dGgu/kp9ZZHgsA==",
+  "dgSpecHash": "uBO+OHPd39r70SteTPTq2fx6LQ4KJrozbiblQxbc1d//GFTlgp0CHDJjV3gsXwDUiPS98n4VtyIlR415sgYkEg==",
   "success": true,
   "projectFilePath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Services\\Cortes.Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\felip\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

@@ -1,6 +1,7 @@
 ﻿using Cortes.Dominio.Entidades;
 using Cortes.Infra.Comum;
 using Cortes.Repositorio.Interfaces.IAgendamentoRepositorio;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -15,30 +16,44 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
     {
         private StringBuilder SQL = new StringBuilder();
         private Generico generico;
-        public AgendamentoRepositorio(IConfiguration config)
+        private DbSession _db;
+
+        public AgendamentoRepositorio(IConfiguration config, DbSession dbSession)
         {
             generico = new Generico(config);
+            _db = dbSession;
         }
 
         public async Task<bool> ConfirmarAgendamento(Agendamento agendamento)
         {
-            if (await ValidarAgendamento(agendamento))
+            try
             {
-                //Configurar Cláusula WHERE
-                var listWhere = new List<(bool isInt, string nome, string valor)>();
-                listWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
+                if (await ValidarAgendamento(agendamento))
+                {
+                    //Configurar Cláusula WHERE
+                    var listWhere = new List<(bool isInt, string nome, string valor)>();
+                    listWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
 
-                //Obter Id
-                var dt = await generico.Select(await generico.MontarSelectGetId("DiasSemana", listWhere));
-                agendamento.DiaSemana_Id = dt.Rows[0]["Id"].ToString();
+                    using (var conn = _db.Connection)
+                    {
+                        var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectGetId("DiasSemana", listWhere));
+                        agendamento.DiaSemana_Id = diaSemanaId.Id.ToString();
+                    }
 
-                //Marcar corte
-                List<string> listaDesconsiderar = new List<string>();
-                listaDesconsiderar.Add("Codigo");
-                await generico.RunSQLCommand(await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true));
-                return true;
+                    using (var conn = _db.Connection)
+                    {
+                        List<string> listaDesconsiderar = new List<string>();
+                        var result = await conn.ExecuteAsync(sql: await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true), param: agendamento);
+                    }
+
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public async Task<bool> LancarAgendamento(Agendamento agendamento)
@@ -49,14 +64,17 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                 var listWhere = new List<(bool isInt, string nome, string valor)>();
                 listWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
 
-                //Obter Id
-                var dt = await generico.Select(await generico.MontarSelectGetId("DiasSemana", listWhere));
-                agendamento.DiaSemana_Id = dt.Rows[0]["Id"].ToString();
+                using (var conn = _db.Connection)
+                {
+                    var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectGetId("DiasSemana", listWhere));
+                    agendamento.DiaSemana_Id = diaSemanaId.Id.ToString();
+                }
 
-                //Marcar corte
-                List<string> listaDesconsiderar = new List<string>();
-                listaDesconsiderar.Add("Codigo");
-                await generico.RunSQLCommand(await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true));
+                using (var conn = _db.Connection)
+                {
+                    List<string> listaDesconsiderar = new List<string>();
+                    var result = await conn.ExecuteAsync(sql: await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true), param: agendamento);
+                }
                 return true;
             }
             catch
@@ -78,25 +96,26 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             listaSelect.Add((true, nameof(agendamento.Codigo)));
             listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
 
+            using (var conn = _db.Connection)
+            {
+                var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere));
+                agendamento.DiaSemana_Id = diaSemanaId.Id.ToString();
+            }
+
             var dados = await generico.Select(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere));
-            if (dados?.Rows?.Count >= 1)
+            if (!string.IsNullOrEmpty(agendamento.DiaSemana_Id))
                 return false;
             return true;
-
         }
 
         public async Task<IList<DiasSemana>> DiasSemana(DiasSemana dias)
         {
             IList<DiasSemana> diasSemana = new List<DiasSemana>();
-            var dados = await generico.Select(await generico.MontarSelectObjeto<DiasSemana>(dias, null, false));
-            diasSemana = (from DataRow dr in dados.Rows
-                          select new DiasSemana()
-                          {
-                              Dia = dr["Dia"].ToString(),
-                              Codigo = int.Parse(dr["Codigo"].ToString())
-                          }).ToList();
-
-            return diasSemana;
+            using (var conn = _db.Connection)
+            {
+                diasSemana = (await conn.QueryAsync<DiasSemana>(await generico.MontarSelectObjeto<DiasSemana>(dias, null, false))).ToList();
+                return diasSemana;
+            }
         }
 
         public async Task<IList<Horario>> Horarios()
@@ -158,17 +177,11 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                 listaWhere.Add((true, nameof(agendamento.Codigo), RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek)));
                 listaWhere.Add((true, nameof(agendamento.Compareceu), "0"));
 
-                var dados = await generico.Select(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere, true));
-                listaAgendamento = (from DataRow dr in dados.Rows
-                                    select new Agendamento()
-                                    {
-                                        Nome = dr["Nome"].ToString(),
-                                        Horario = dr["Horario"].ToString(),
-                                        Preco = decimal.Parse(dr["Preco"].ToString()),
-                                        Id = dr["Id"].ToString()
-                                    }).ToList();
-
-                return listaAgendamento;
+                using (var conn = _db.Connection)
+                {
+                    listaAgendamento = (await conn.QueryAsync<Agendamento>(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere, true))).ToList();
+                    return listaAgendamento;
+                }
             }
             catch
             {
@@ -207,8 +220,12 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                 var listaWhere = new List<(bool isInt, string campo, string valor)>();
                 listaUpdate.Add((false, "Compareceu", compareceu.ToString()));
                 listaWhere.Add((false, nameof(Id), Id));
-                await generico.RunSQLCommand(await generico.Atualizar("Agendamentos", listaUpdate, listaWhere));
-                return true;
+
+                using (var conn = _db.Connection)
+                {
+                    var result = await conn.ExecuteAsync(sql: await generico.Atualizar("Agendamentos", listaUpdate, listaWhere));
+                    return true;
+                }
             }
             catch
             {

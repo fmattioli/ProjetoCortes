@@ -1,6 +1,7 @@
 ﻿using Cortes.Dominio.Entidades;
 using Cortes.Repositorio.Interfaces.IEstabelecimentoRepositorio;
 using Cortes.Services.Interfaces.EstabelecimentoServico;
+using Cortes.Services.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,12 @@ namespace Cortes.Services.Servicos
         }
         public async Task<bool> ExisteConfiguracao()
         {
-            return await estabelecimentoRepositorio.ExisteConfiguracao(new Estabelecimento());
+            return await estabelecimentoRepositorio.ExisteConfiguracao();
         }
 
-        public async Task<bool> RealizarConfiguracao()
+        public async Task<bool> RealizarConfiguracao(EstabelecimentoViewModel estabelecimento) 
         {
-            return await estabelecimentoRepositorio.RealizarConfiguracao(new Estabelecimento());
+            return await estabelecimentoRepositorio.RealizarConfiguracao(null);
         }
     }
 }

@@ -404,3 +404,4 @@ C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Cortes.Web.MvcApplic
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Agendamento\VerificarAgendamento.cshtml.g.cs
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Agendamento\FazerLancamento.cshtml.g.cs
 C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\obj\Debug\net5.0\Razor\Views\Usuarios\_GraficoCortesDiario.cshtml.g.cs
+C:\BackEnd\Cortes\ProjetoCortes\Cortes.Web\bin\Debug\net5.0\Dapper.dll

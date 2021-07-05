@@ -8,7 +8,7 @@ namespace Cortes.Dominio.Entidades
 {
     public class Agendamento
     {
-		public string Id { get; set; }
+		public Guid Id { get; set; }
 		public string Nome { get; set; }
 		public string Endereco { get; set; }
 		public int Codigo { get; set; }

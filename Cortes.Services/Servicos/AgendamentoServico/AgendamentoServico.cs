@@ -29,7 +29,7 @@ namespace Cortes.Services.Servicos
             {
                 listaAgendamento.Add(new AgendamentoViewModel()
                 {
-                    Id = item.Id,
+                    Id = item.Id.ToString(),
                     Nome = item.Nome,
                     HorarioSelecionado = item.Horario,
                     Preco = item.Preco

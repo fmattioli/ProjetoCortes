@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cortes.Services.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace Cortes.Services.Interfaces.EstabelecimentoServico
     public interface IEstabelecimentoServico
     {
         Task<bool> ExisteConfiguracao();
-        Task<bool> RealizarConfiguracao();
+        Task<bool> RealizarConfiguracao(EstabelecimentoViewModel estabelecimento);
     }
 }

@@ -58,7 +58,7 @@ namespace Cortes.Services.UsuarioServicos
             {
                 login.Token = Token.GenerateToken(usuario.Nome, auth.Key);
                 login.Nome = usuario.Nome;
-                login.Id = usuario.Id;
+                login.Id = usuario.Id.ToString();
                 return login;
             }
             return null;

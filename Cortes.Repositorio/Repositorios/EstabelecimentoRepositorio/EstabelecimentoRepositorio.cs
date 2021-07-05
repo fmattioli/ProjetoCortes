@@ -2,6 +2,7 @@
 using Cortes.Infra.Comum;
 using Cortes.Repositorio.Interfaces.IAgendamentoRepositorio;
 using Cortes.Repositorio.Interfaces.IEstabelecimentoRepositorio;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,32 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
 {
     public class EstabelecimentoRepositorio : IEstabelecimentoRepositorio
     {
-        private StringBuilder SQL = new StringBuilder();
         private Generico generico;
         private IAgendamentoRepositorio agendamentoRepositorio;
-        public EstabelecimentoRepositorio(IConfiguration config, IAgendamentoRepositorio agendamentoRepositorio)
+        private DbSession _db;
+
+        public EstabelecimentoRepositorio(IConfiguration config, IAgendamentoRepositorio agendamentoRepositorio, DbSession dbSession)
         {
             generico = new Generico(config);
             this.agendamentoRepositorio = agendamentoRepositorio;
+            _db = dbSession;
         }
 
-        public async Task<bool> ExisteConfiguracao(Estabelecimento estabelecimento)
+        public async Task<bool> ExisteConfiguracao()
         {
-            var dt = await generico.Select(await generico.MontarSelectObjeto<Estabelecimento>(estabelecimento, null, false));
-            return dt?.Rows.Count >= 1;
+            try
+            {
+                using (var conn = _db.Connection)
+                {
+                    Estabelecimento estabelecimento = new Estabelecimento();
+                    estabelecimento = await conn.QueryFirstOrDefaultAsync<Estabelecimento>(await generico.MontarSelectObjeto<Estabelecimento>(estabelecimento, null, false));
+                    return (estabelecimento is not null);
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<bool> RealizarConfiguracao(Estabelecimento estabelecimento)

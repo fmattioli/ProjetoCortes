@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0LNf2jEGuSxCqWzC1uWDEIEsxkxt18OIw6049YB0kVFQ9xUckN54og4vJOg4QdazrNWYAIlvIuxWzt1QnIQaSQ==",
+  "dgSpecHash": "D97DckY2Ml0rlN+8AIWsmB99/OgWGtaxBpfgZKKqd2CF4O10WJbP50SReafsBmL/82iwwXSPRbenleKzwfcO6w==",
   "success": true,
   "projectFilePath": "C:\\BackEnd\\Cortes\\ProjetoCortes\\Cortes.Infra\\Cortes.Infra.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\felip\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

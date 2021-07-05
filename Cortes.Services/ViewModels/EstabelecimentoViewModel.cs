@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cortes.Dominio.Entidades
+namespace Cortes.Services.ViewModels
 {
-    public class Estabelecimento
+    public class EstabelecimentoViewModel
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Nome { get; set; }
         public string Endereco { get; set; }
         public string HoraAbertura { get; set; }
