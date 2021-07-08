@@ -74,7 +74,8 @@ namespace Cortes.Services.Servicos
             return new GraficoCortesViewModel
             {
                 CortesAbertos = resultado.CortesAbertos,
-                CortesFinalizados = resultado.CortesFinalizado
+                CortesFinalizados = resultado.CortesFinalizados,
+                CortesCancelados = resultado.CortesCancelados
             };
         }
 

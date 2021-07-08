@@ -233,36 +233,43 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             }
         }
 
-        public async Task<(int CortesAbertos, int CortesFinalizado)> PreencherGraficos()
+        public async Task<GraficoCortes> PreencherGraficos()
         {
-            var dia = RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek);
-            var listaSelect = new List<(bool isInt, string nome)>();
-            var listaWhere = new List<(bool isInt, string nome, string valor)>();
-            var listaJoin = new List<(string, string, string)>();
+            var codigo = RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek);
+            using (var conn = _db.Connection)
+            {
+                SQL.Clear();
+                SQL.AppendLine("SELECT TOP 1																");
+                SQL.AppendLine("	(																		");
+                SQL.AppendLine("	SELECT COUNT(*) AS CortesAbertos										");
+                SQL.AppendLine("	FROM agendamentos														");
+                SQL.AppendLine("	INNER JOIN DiasSemana ON DiasSemana.Id = Agendamentos.DiaSemana_Id		");
+                SQL.AppendLine("	WHERE Codigo = @codigo														");
+                SQL.AppendLine("	AND Compareceu = '0' 													");
+                SQL.AppendLine("	) AS CortesAbertos,														");
+                SQL.AppendLine("	(																		");
+                SQL.AppendLine("	SELECT COUNT(*) AS CortesAbertos										");
+                SQL.AppendLine("	FROM agendamentos														");
+                SQL.AppendLine("	INNER JOIN DiasSemana ON DiasSemana.Id = Agendamentos.DiaSemana_Id		");
+                SQL.AppendLine("	WHERE Codigo = @codigo														");
+                SQL.AppendLine("	AND Compareceu = '1' 													");
+                SQL.AppendLine("	) AS CortesFinalizados,													");
+                SQL.AppendLine("	(																		");
+                SQL.AppendLine("	SELECT COUNT(*) AS CortesAbertos										");
+                SQL.AppendLine("	FROM agendamentos														");
+                SQL.AppendLine("	INNER JOIN DiasSemana ON DiasSemana.Id = Agendamentos.DiaSemana_Id		");
+                SQL.AppendLine("	WHERE Codigo = @codigo														");
+                SQL.AppendLine("	AND Compareceu = '2' 													");
+                SQL.AppendLine("	) AS CortesCancelados													");
+                SQL.AppendLine("FROM Agendamentos															");
 
-            listaSelect.Add((false, "Nome"));
-            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
-            listaWhere.Add((true, "Codigo", dia));
-            listaWhere.Add((true, "CONVERT(VARCHAR,DataCorte,103)", DateTime.Now.ToString("dd/MM/yyyy")));
-            listaWhere.Add((true, "Compareceu", "0"));
+                GraficoCortes cortes = await conn.QueryFirstOrDefaultAsync<GraficoCortes>
+                   (sql: SQL.ToString(), param: new { codigo });
 
-            var cortesAbertos = await generico.Select(await generico.MontarSelectWithJoin("Agendamento", listaJoin, listaSelect, listaWhere, true));
+                return cortes;
+            }
 
-            dia = RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek);
-            listaSelect = new List<(bool isInt, string nome)>();
-            listaWhere = new List<(bool isInt, string nome, string valor)>();
-            listaJoin = new List<(string, string, string)>();
-
-            listaSelect.Add((false, "Nome"));
-            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
-            listaWhere.Add((true, "Codigo", dia));
-            listaWhere.Add((true, "CONVERT(VARCHAR,DataCorte,103)", DateTime.Now.ToString("dd/MM/yyyy")));
-            listaWhere.Add((true, "Compareceu", "1"));
-
-            var cortesFinalizados = await generico.Select(await generico.MontarSelectWithJoin("Agendamento", listaJoin, listaSelect, listaWhere, true));
-
-            var retorno = (cortesAbertos.Rows.Count, cortesFinalizados.Rows.Count);
-            return retorno;
+            
         }
     }
 }

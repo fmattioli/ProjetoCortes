@@ -253,12 +253,12 @@ function GraficosCortesDiariosXCortesFinalizados() {
             new Chart(document.getElementById("CortesDiario"), {
                 type: 'pie',
                 data: {
-                    labels: ["Cortes agendados", "Cortes finalizados"],
+                    labels: ["Cortes agendados", "Cortes finalizados", "Cortes cancelados"],
 
                     datasets: [{
-                        label: "Total de protocolos em andamento e finalizados",
-                        data: [dados.cortesAbertos, dados.cortesFinalizados],
-                        backgroundColor: ["#0091ea", "#c62828"]
+                        label: "Resumo de cortes",
+                        data: [dados.cortesAbertos, dados.cortesFinalizados, dados.cortesCancelados],
+                        backgroundColor: ["#0091ea", "#c62828", "#000000"]
                     }]
                 },
 

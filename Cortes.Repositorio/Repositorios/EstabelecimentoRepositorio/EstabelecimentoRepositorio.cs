@@ -46,6 +46,10 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
         {
             try
             {
+                await generico.RunSQLCommand("delete from Agendamentos");
+                await generico.RunSQLCommand("delete from DiasSemana");
+                await generico.RunSQLCommand("delete from Estabelecimento");
+
                 //Inserir dias
                 DiasSemana diasSemana = new DiasSemana
                 {

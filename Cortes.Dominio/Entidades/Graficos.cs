@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cortes.Services.ViewModels
+namespace Cortes.Dominio.Entidades
 {
-    public class GraficoCortesViewModel
+
+    public class GraficoCortes
     {
         public int CortesAbertos { get; set; }
         public int CortesFinalizados { get; set; }

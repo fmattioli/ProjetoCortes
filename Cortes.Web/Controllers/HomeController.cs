@@ -23,7 +23,7 @@ namespace Cortes.Web.Controllers
                 if(usuario != null)
                 {
                     //Validar se existe configurações necessárias!
-                    if (!await estabelecimentoServico.ExisteConfiguracao())
+                    if (await estabelecimentoServico.ExisteConfiguracao())
                     {
                         //Configurações iniciais
                         await estabelecimentoServico.RealizarConfiguracao(null);
