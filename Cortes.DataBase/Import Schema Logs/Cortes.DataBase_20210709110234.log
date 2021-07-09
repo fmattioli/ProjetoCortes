@@ -1,0 +1,84 @@
+09/07/2021 20:02:34	This log contains information about the import schema operation into project 'Cortes.DataBase' on computer 'DESKTOP-OM9HODU' by user 'felip'.
+09/07/2021 20:02:35	Import of database schema has started.
+09/07/2021 20:02:37	Gathering logins
+09/07/2021 20:04:12	Gathering database credentials
+09/07/2021 20:04:12	Gathering database options
+09/07/2021 20:04:12	Gathering generic database scoped configuration option
+09/07/2021 20:04:12	Gathering users
+09/07/2021 20:04:12	Gathering roles
+09/07/2021 20:04:12	Gathering application roles
+09/07/2021 20:04:12	Gathering role memberships
+09/07/2021 20:04:12	Gathering filegroups
+09/07/2021 20:04:12	Gathering full-text catalogs
+09/07/2021 20:04:12	Gathering assemblies
+09/07/2021 20:04:12	Gathering certificates
+09/07/2021 20:04:12	Gathering symmetric keys
+09/07/2021 20:04:12	Gathering encrypted symmetric keys
+09/07/2021 20:04:12	Gathering schemas
+09/07/2021 20:04:12	Gathering XML schema collections
+09/07/2021 20:04:12	Gathering user-defined data types
+09/07/2021 20:04:12	Gathering user-defined types
+09/07/2021 20:04:12	Gathering table types
+09/07/2021 20:04:12	Gathering unique keys for table types
+09/07/2021 20:04:12	Gathering primary keys for table types
+09/07/2021 20:04:12	Gathering indexes for table types
+09/07/2021 20:04:12	Gathering check constraints for table types
+09/07/2021 20:04:12	Gathering default constraints for table types
+09/07/2021 20:04:12	Gathering partition functions
+09/07/2021 20:04:12	Gathering partition schemes
+09/07/2021 20:04:12	Gathering functions
+09/07/2021 20:04:12	Gathering encrypted functions
+09/07/2021 20:04:12	Gathering aggregates
+09/07/2021 20:04:12	Gathering procedures
+09/07/2021 20:04:12	Gathering encrypted procedures
+09/07/2021 20:04:13	Gathering tables
+09/07/2021 20:04:13	Gathering primary keys
+09/07/2021 20:04:13	Gathering unique constraints
+09/07/2021 20:04:13	Gathering foreign keys
+09/07/2021 20:04:13	Gathering default constraints
+09/07/2021 20:04:13	Gathering check constraints
+09/07/2021 20:04:13	Gathering views
+09/07/2021 20:04:13	Gathering encrypted views
+09/07/2021 20:04:13	Gathering indexes
+09/07/2021 20:04:13	Gathering statistics
+09/07/2021 20:04:13	Gathering full-text index stoplists
+09/07/2021 20:04:13	Gathering search property lists
+09/07/2021 20:04:13	Gathering search properties
+09/07/2021 20:04:13	Gathering full-text indexes
+09/07/2021 20:04:14	Gathering column store indexes
+09/07/2021 20:04:14	Gathering spatial indexes
+09/07/2021 20:04:14	Gathering XML indexes
+09/07/2021 20:04:14	Gathering Selective XML indexes
+09/07/2021 20:04:14	Gathering encrypted triggers
+09/07/2021 20:04:14	Gathering triggers
+09/07/2021 20:04:14	Gathering encrypted and clr ddl triggers
+09/07/2021 20:04:14	Gathering ddl triggers
+09/07/2021 20:04:14	Creating edge constraints
+09/07/2021 20:04:14	Gathering synonyms
+09/07/2021 20:04:14	Gathering defaults
+09/07/2021 20:04:14	Gathering data constraint uddt bindings
+09/07/2021 20:04:14	Gathering rules
+09/07/2021 20:04:14	Gathering data constraint uddt bindings
+09/07/2021 20:04:14	Gathering message types
+09/07/2021 20:04:14	Gathering queues
+09/07/2021 20:04:14	Gathering contracts
+09/07/2021 20:04:14	Gathering services
+09/07/2021 20:04:14	Gathering event notifications
+09/07/2021 20:04:14	Gathering remote service bindings
+09/07/2021 20:04:14	Gathering broker priorities
+09/07/2021 20:04:14	Gathering signatures
+09/07/2021 20:04:14	Gathering data compression options
+09/07/2021 20:04:14	Gathering sequence types
+09/07/2021 20:04:14	Gathering security policies
+09/07/2021 20:04:14	Gather column encryption keys
+09/07/2021 20:04:14	Gathering column master keys
+09/07/2021 20:04:14	Gathering external data sources
+09/07/2021 20:04:14	Gathering external tables
+09/07/2021 20:04:14	Gathering database permissions
+09/07/2021 20:04:14	Gathering extended properties
+09/07/2021 20:04:15	Gathering logins
+09/07/2021 20:04:19	Scanning project for duplicate elements
+09/07/2021 20:04:19	Finished duplicate element processing
+09/07/2021 20:04:20	Finished importing database.
+09/07/2021 20:04:20	A summary of the import was saved to the following location: C:\BackEnd\Cortes\ProjetoCortes\Cortes.DataBase\Import Schema Logs\Cortes.DataBase_20210709110234.log
+09/07/2021 20:04:20	Click Finish to continue...

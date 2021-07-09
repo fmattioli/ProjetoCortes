@@ -1,6 +1,6 @@
 {
   "ConnectionStrings": {
-    "CortesBD": "Server=DESKTOP-ENLSH4J;Database=Cortes;User Id=webri;Password=webri;"
+    "CortesBD": "Server=azurebd.database.windows.net;Database=CortesDB;User Id=mattioli;Password=24332433aB;"
   },
   "Secret": {
     "Key": "fedaf7d8863b48e197b9287d492b708e"

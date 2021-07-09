@@ -31,8 +31,6 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                 if (await ValidarAgendamento(agendamento))
                 {
                     //Configurar Cláusula WHERE
-                    var listWhere = new List<(bool isInt, string nome, string valor)>();
-                    listWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
 
                     using (var conn = _db.Connection)
                     {
@@ -60,10 +58,6 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
         {
             try
             {
-                //Configurar Cláusula WHERE
-                var listWhere = new List<(bool isInt, string nome, string valor)>();
-                listWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
-
                 using (var conn = _db.Connection)
                 {
                     var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectGetId("DiasSemana", listWhere));
@@ -85,17 +79,6 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
 
         public async Task<bool> ValidarAgendamento(Agendamento agendamento)
         {
-            var listaWhere = new List<(bool isInt, string nome, string valor)>();
-            var listaJoin = new List<(string, string, string)>();
-            var listaSelect = new List<(bool isInt, string nome)>();
-
-            listaWhere.Add((false, nameof(agendamento.Horario), agendamento.Horario));
-            listaWhere.Add((true, nameof(agendamento.Codigo), agendamento.Codigo.ToString()));
-
-            listaSelect.Add((false, nameof(agendamento.Horario)));
-            listaSelect.Add((true, nameof(agendamento.Codigo)));
-            listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
-
             using (var conn = _db.Connection)
             {
                 var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere));
@@ -164,18 +147,7 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             {
                 IList<Agendamento> listaAgendamento = new List<Agendamento>();
                 Agendamento agendamento = new Agendamento();
-                var listaSelect = new List<(bool isInt, string nome)>();
-                var listaWhere = new List<(bool isInt, string nome, string valor)>();
-                var listaJoin = new List<(string, string, string)>();
 
-                listaSelect.Add((false, nameof(agendamento.Horario)));
-                listaSelect.Add((true, nameof(agendamento.Preco)));
-                listaSelect.Add((true, nameof(agendamento.Nome)));
-                listaSelect.Add((true, "Agendamentos.Id"));
-
-                listaJoin.Add(("DiasSemana", "Agendamentos", "DiaSemana_Id"));
-                listaWhere.Add((true, nameof(agendamento.Codigo), RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek)));
-                listaWhere.Add((true, nameof(agendamento.Compareceu), "0"));
 
                 using (var conn = _db.Connection)
                 {
@@ -269,7 +241,7 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
                 return cortes;
             }
 
-            
+
         }
     }
 }

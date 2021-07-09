@@ -11,7 +11,6 @@ namespace Cortes.Dominio.Entidades
 		public Guid Id { get; set; }
 		public string Nome { get; set; }
 		public string Endereco { get; set; }
-		public int Codigo { get; set; }
 		public string DiaSemana_Id { get; set; }
 		public string Horario { get; set; }
 		public string Usuario_Id { get; set; }

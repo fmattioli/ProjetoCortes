@@ -105,9 +105,9 @@ namespace Cortes.Infra.Comum
                         else
                             SQL.AppendLine($"{item.GetValue(objeto).ToString().Replace(",", ".")}");
                     }
-                    
+
                 }
-                
+
             }
         }
 
@@ -122,16 +122,16 @@ namespace Cortes.Infra.Comum
                     else
                         SQL.AppendLine($"{item.Name}");
                 }
-                
+
             }
             SQL.AppendLine($")");
             SQL.AppendLine($"VALUES");
             SQL.AppendLine($"(");
         }
 
-        public async Task<string> MontarSelectObjeto<T>(T objeto, IList<string> temWhere, bool plural = true)
+        public async Task<string> MontarSelectObjeto<T>(T objeto)
         {
-            string sqlInsert = "";
+            string sqlSelect = "";
             await Task.Run(() =>
             {
                 SQL.Clear();
@@ -145,31 +145,13 @@ namespace Cortes.Infra.Comum
                     else
                         SQL.AppendLine($"{item.Name}");
                 }
-                if (plural)
-                    SQL.AppendLine($"FROM {objeto.GetType().Name}s");
-                else
-                    SQL.AppendLine($"FROM {objeto.GetType().Name}");
-                if (temWhere != null)
-                {
-                    SQL.AppendLine($"WHERE 1 = 1");
-                    foreach (var item in temWhere)
-                    {
-                        if (objeto.GetType().GetProperties().Where(a => a.Name == item).ToArray()[0].PropertyType.FullName.Contains("String"))
-                        {
-                            string valor = objeto.GetType().GetProperties().Where(a => a.Name == item).ToArray()[0].GetValue(objeto).ToString();
-                            SQL.AppendLine($"AND {item} = '{valor}'");
-                        }
-                        else
-                        {
-                            string valor = objeto.GetType().GetProperties().Where(a => a.Name == item).ToArray()[0].GetValue(objeto).ToString();
-                            SQL.AppendLine($"AND {item} = {valor}");
-                        }
-                    }
-                }
 
-                sqlInsert = SQL.ToString();
+                SQL.AppendLine($"FROM {objeto.GetType().Name}");
+                
+
+                sqlSelect = SQL.ToString();
             });
-            return sqlInsert;
+            return sqlSelect;
         }
 
         public async Task<string> MontarSelectWithJoin(string tableName, IList<(string tabela, string tabelaJoin, string colunaJoin)> join, IList<(bool isInt, string nome)> fields, IList<(bool isInt, string nome, string valor)> temWhere, bool plural = true)
@@ -258,7 +240,7 @@ namespace Cortes.Infra.Comum
                 {
                     if (item.campo != lastItem)
                     {
-                        if(!item.isInt)
+                        if (!item.isInt)
                             SQL.AppendLine($"{item.campo} = '{item.valor}',");
                         else
                             SQL.AppendLine($"{item.campo} = {item.valor},");
@@ -271,7 +253,7 @@ namespace Cortes.Infra.Comum
                             SQL.AppendLine($"{item.campo} = {item.valor}");
                     }
                 }
-               
+
                 if (temWhere != null)
                 {
                     SQL.AppendLine($"WHERE 1 = 1");

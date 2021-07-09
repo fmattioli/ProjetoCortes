@@ -17,6 +17,7 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
         private Generico generico;
         private IAgendamentoRepositorio agendamentoRepositorio;
         private DbSession _db;
+        public StringBuilder SQL { get; set; } = new StringBuilder();
 
         public EstabelecimentoRepositorio(IConfiguration config, IAgendamentoRepositorio agendamentoRepositorio, DbSession dbSession)
         {
@@ -32,7 +33,8 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                 using (var conn = _db.Connection)
                 {
                     Estabelecimento estabelecimento = new Estabelecimento();
-                    estabelecimento = await conn.QueryFirstOrDefaultAsync<Estabelecimento>(await generico.MontarSelectObjeto<Estabelecimento>(estabelecimento, null, false));
+                    SQL.AppendLine("SELECT TOP 1 * FROM Estabelecimento");
+                    estabelecimento = await conn.QueryFirstOrDefaultAsync<Estabelecimento>(SQL.ToString());
                     return (estabelecimento is not null);
                 }
             }
@@ -109,20 +111,19 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                 {
                     foreach (var item in await Horarios())
                     {
-                        var listWhere = new List<(bool isInt, string nome, string valor)>();
-                        listWhere.Add((true, "Codigo", i.ToString()));
-                        var dt = await generico.Select(await generico.MontarSelectGetId("DiasSemana", listWhere));
+                        SQL.Clear();
+                        SQL.Append($"SELECT ID FROM DiasSemana WHERE Codigo = {i}");
+                        var dt = await generico.Select(SQL.ToString());
                         string DiaSemana_Id = dt.Rows[0]["Id"].ToString();
 
-                        listWhere = new List<(bool isInt, string nome, string valor)>();
-                        listWhere.Add((false, "Nome", "Felipe"));
+                        SQL.Clear();
+                        SQL.Append("SELECT TOP 1 Id FROM Usuarios");
 
-                        dt = await generico.Select(await generico.MontarSelectGetId("Usuarios", listWhere));
+                        dt = await generico.Select(SQL.ToString());
                         string Usuario_Id = dt.Rows[0]["Id"].ToString();
 
                         Agendamento agendamento = new Agendamento
                         {
-                            Codigo = int.Parse(agendamentoRepositorio.RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek)),
                             Endereco = "RUA FLOR DE MADEIRA" + new Random().Next(0, 100),
                             DiaSemana_Id = DiaSemana_Id,
                             Horario = item.Hora,
@@ -134,11 +135,7 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
 
                         };
 
-                        //Caso não queira inserir uma coluna no insert
-                        List<string> listaDesconsiderar = new List<string>();
-                        listaDesconsiderar.Add("Codigo");
-
-                        await generico.RunSQLCommand(await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true));
+                        await generico.RunSQLCommand(await generico.MontarInsert<Agendamento>(agendamento));
                     }
 
                 }
@@ -154,7 +151,7 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
         public async Task<IList<Horario>> Horarios()
         {
             IList<Horario> horariosDisponiveis = new List<Horario>();
-            var dados = await generico.Select(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento(), null, false));
+            var dados = await generico.Select(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento()));
             if (dados?.Rows.Count >= 1)
             {
                 string horarioAbertura = dados.Rows[0]["HoraAbertura"].ToString();

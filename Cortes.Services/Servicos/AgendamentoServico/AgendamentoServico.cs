@@ -55,7 +55,6 @@ namespace Cortes.Services.Servicos
         {
             Agendamento agendamento = new Agendamento
             {
-                Codigo = model.DiaSelecionado,
                 Endereco = model.Endereco,
                 Horario = model.HorarioSelecionado,
                 Usuario_Id = model.Usuario_Id,
@@ -83,7 +82,6 @@ namespace Cortes.Services.Servicos
         {
             Agendamento agendamento = new Agendamento
             {
-                Codigo = agendamentoModel.DiaSelecionado,
                 Endereco = agendamentoModel.Endereco,
                 Horario = agendamentoModel.HorarioSelecionado,
                 Usuario_Id = agendamentoModel.Usuario_Id,
@@ -100,7 +98,6 @@ namespace Cortes.Services.Servicos
         {
             Agendamento agendamento = new Agendamento
             {
-                Codigo = model.DiaSelecionado,
                 Endereco = model.Endereco,
                 Horario = model.HorarioSelecionado,
                 Usuario_Id = model.Usuario_Id,
