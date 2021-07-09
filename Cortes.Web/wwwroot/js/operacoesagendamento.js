@@ -124,6 +124,11 @@ function CortouCabelo(Id) {
             if (data === true) {
                 $("#" + Id).remove();
                 GraficosCortesDiariosXCortesFinalizados();
+
+                M.toast({
+                    html: "Status atualizado com sucesso!",
+                    classes: 'black darken-4 rounded',
+                });
             }
             else {
                 
@@ -151,6 +156,12 @@ function NaoCortouCabelo(Id) {
             if (data === true) {
                 $("#" + Id).remove();
                 GraficosCortesDiariosXCortesFinalizados();
+
+                M.toast({
+                    html: "Status atualizado com sucesso!",
+                    classes: 'red darken-4 rounded',
+                });
+
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

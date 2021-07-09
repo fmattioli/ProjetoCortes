@@ -42,6 +42,7 @@
             @*<li><a href="#">Eae, Usuário</a></li>*@
             <li><a onclick="Deslogar()">Sair</a></li>
             <li><a asp-action="Index" asp-controller="Usuarios" asp-route-Id="@TempData["Id"]">Início</a></li>
+            <li><a asp-action="Index" asp-controller="Usuarios" asp-route-Id="@TempData["Id"]">Relatórios</a></li>
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Agendamento<i class="material-icons right">arrow_drop_down</i></a></li>
 
         </ul>
@@ -51,6 +52,7 @@
 <ul class="sidenav" id="mobile-demo">
     <li><a onclick="Deslogar()">Sair</a></li>
     <li><a asp-action="Index" asp-controller="Usuarios" asp-route-Id="@TempData["Id"]">Início</a></li>
+    <li><a asp-action="Index" asp-controller="Usuarios" asp-route-Id="@TempData["Id"]">Relatórios</a></li>
     <li><a class="dropdown-trigger" href="#!" data-target="dropdown_mobile">Agendamento<i class="material-icons right">arrow_drop_down</i></a></li>
 </ul>
 
