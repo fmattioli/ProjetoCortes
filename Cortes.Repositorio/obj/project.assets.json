@@ -4346,7 +4346,8 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Cortes.Dominio >= 1.0.0",
-      "Cortes.Infra >= 1.0.0"
+      "Cortes.Infra >= 1.0.0",
+      "Dapper >= 2.0.90"
     ]
   },
   "packageFolders": {
@@ -4402,6 +4403,12 @@
     "frameworks": {
       "net5.0": {
         "targetAlias": "net5.0",
+        "dependencies": {
+          "Dapper": {
+            "target": "Package",
+            "version": "[2.0.90, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

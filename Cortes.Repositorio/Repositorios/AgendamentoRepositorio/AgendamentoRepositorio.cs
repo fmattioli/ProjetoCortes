@@ -2,7 +2,6 @@
 using Cortes.Infra.Comum;
 using Cortes.Repositorio.Interfaces.IAgendamentoRepositorio;
 using Dapper;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,12 +14,11 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
     public class AgendamentoRepositorio : IAgendamentoRepositorio
     {
         private StringBuilder SQL = new StringBuilder();
-        private Generico generico;
+        private Generico generico = new Generico();
         private DbSession _db;
 
-        public AgendamentoRepositorio(IConfiguration config, DbSession dbSession)
+        public AgendamentoRepositorio(DbSession dbSession)
         {
-            generico = new Generico(config);
             _db = dbSession;
         }
 
@@ -34,14 +32,17 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
 
                     using (var conn = _db.Connection)
                     {
-                        var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectGetId("DiasSemana", listWhere));
-                        agendamento.DiaSemana_Id = diaSemanaId.Id.ToString();
+
+                        SQL.Clear();
+                        SQL.Append($"SELECT ID FROM DiasSemana WHERE Id = @Id");
+                        agendamento.DiaSemana_Id = await conn.QueryFirstOrDefaultAsync<string>(SQL.ToString(),new { agendamento.Id });
+
+                        var result = await conn.ExecuteAsync(sql: await generico.MontarInsert<Agendamento>(agendamento, null, true), agendamento);
                     }
 
                     using (var conn = _db.Connection)
                     {
-                        List<string> listaDesconsiderar = new List<string>();
-                        var result = await conn.ExecuteAsync(sql: await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true), param: agendamento);
+                        
                     }
 
                     return true;
@@ -60,16 +61,12 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             {
                 using (var conn = _db.Connection)
                 {
-                    var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectGetId("DiasSemana", listWhere));
-                    agendamento.DiaSemana_Id = diaSemanaId.Id.ToString();
+                    SQL.Clear();
+                    SQL.Append($"SELECT ID FROM DiasSemana WHERE Id = @Id");
+                    agendamento.DiaSemana_Id = await conn.QueryFirstOrDefaultAsync<string>(SQL.ToString(), new { agendamento.Id });
+                    var result = await conn.ExecuteAsync(sql: await generico.MontarInsert<Agendamento>(agendamento, null, true), agendamento);
+                    return true;
                 }
-
-                using (var conn = _db.Connection)
-                {
-                    List<string> listaDesconsiderar = new List<string>();
-                    var result = await conn.ExecuteAsync(sql: await generico.MontarInsert<Agendamento>(agendamento, listaDesconsiderar, true), param: agendamento);
-                }
-                return true;
             }
             catch
             {
@@ -81,14 +78,19 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
         {
             using (var conn = _db.Connection)
             {
-                var diaSemanaId = await conn.QueryFirstOrDefaultAsync<DiasSemana>(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere));
-                agendamento.DiaSemana_Id = diaSemanaId.Id.ToString();
-            }
+                SQL.Clear();
+                SQL.AppendLine("SELECT ISNULL(count(*),0) as Total			");
+                SQL.AppendLine("FROM Agendamento 			");
+                SQL.AppendLine("WHERE DiasSemana_Id = @Id	");
+                SQL.AppendLine("AND Horario = @Horario		");
 
-            var dados = await generico.Select(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere));
-            if (!string.IsNullOrEmpty(agendamento.DiaSemana_Id))
-                return false;
-            return true;
+                int total = await conn.QueryFirstOrDefaultAsync<int>
+                    (sql: SQL.ToString(), param: new { agendamento.Id, agendamento.Horario });
+
+                if (total == 0)
+                    return true;
+            }
+            return false;
         }
 
         public async Task<IList<DiasSemana>> DiasSemana(DiasSemana dias)
@@ -96,7 +98,9 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             IList<DiasSemana> diasSemana = new List<DiasSemana>();
             using (var conn = _db.Connection)
             {
-                diasSemana = (await conn.QueryAsync<DiasSemana>(await generico.MontarSelectObjeto<DiasSemana>(dias, null, false))).ToList();
+                SQL.Clear();
+                SQL.AppendLine("SELECT Id, Dia FROM DiasSemana");
+                diasSemana = (await conn.QueryAsync<DiasSemana>(SQL.ToString())).ToList();
                 return diasSemana;
             }
         }
@@ -104,41 +108,44 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
         public async Task<IList<Horario>> Horarios()
         {
             IList<Horario> horariosDisponiveis = new List<Horario>();
-            var dados = await generico.Select(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento(), null, false));
-            if (dados?.Rows.Count >= 1)
+            using (var conn = _db.Connection)
             {
-                string horarioAbertura = dados.Rows[0]["HoraAbertura"].ToString();
-                string horarioFechamento = dados.Rows[0]["HoraFechamento"].ToString();
-                int codigo = 1;
-                horariosDisponiveis.Add(new Horario
+                Estabelecimento estabelecimento = await conn.QueryFirstOrDefaultAsync<Estabelecimento>(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento()));
+                if(estabelecimento is not null)
                 {
-                    Codigo = codigo,
-                    Hora = horarioAbertura
-                });
-
-                int Abertura = int.Parse(horarioAbertura.Replace(":", ""));
-                int Fechamento = int.Parse(horarioFechamento.Replace(":", ""));
-
-                while (Abertura < Fechamento)
-                {
-                    codigo++;
-                    var result = Convert.ToDateTime(horariosDisponiveis[horariosDisponiveis.Count - 1].Hora).AddMinutes(30).ToString("HH:mm");
+                    string horarioAbertura = estabelecimento.HoraAbertura;
+                    string horarioFechamento = estabelecimento.HoraFechamento;
+                    int codigo = 1;
                     horariosDisponiveis.Add(new Horario
                     {
                         Codigo = codigo,
-                        Hora = result
+                        Hora = horarioAbertura
                     });
 
-                    Abertura = int.Parse(result.Replace(":", ""));
-                }
+                    int Abertura = int.Parse(horarioAbertura.Replace(":", ""));
+                    int Fechamento = int.Parse(horarioFechamento.Replace(":", ""));
 
-                horariosDisponiveis.Add(new Horario
-                {
-                    Codigo = codigo++,
-                    Hora = horarioFechamento.ToString()
-                });
+                    while (Abertura < Fechamento)
+                    {
+                        codigo++;
+                        var result = Convert.ToDateTime(horariosDisponiveis[horariosDisponiveis.Count - 1].Hora).AddMinutes(30).ToString("HH:mm");
+                        horariosDisponiveis.Add(new Horario
+                        {
+                            Codigo = codigo,
+                            Hora = result
+                        });
+
+                        Abertura = int.Parse(result.Replace(":", ""));
+                    }
+
+                    horariosDisponiveis.Add(new Horario
+                    {
+                        Codigo = codigo++,
+                        Hora = horarioFechamento.ToString()
+                    });
+                }
+                return horariosDisponiveis;
             }
-            return horariosDisponiveis;
         }
 
         public async Task<IList<Agendamento>> AgendamentosDiario()
@@ -146,12 +153,14 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             try
             {
                 IList<Agendamento> listaAgendamento = new List<Agendamento>();
-                Agendamento agendamento = new Agendamento();
-
-
                 using (var conn = _db.Connection)
                 {
-                    listaAgendamento = (await conn.QueryAsync<Agendamento>(await generico.MontarSelectWithJoin(nameof(agendamento), listaJoin, listaSelect, listaWhere, true))).ToList();
+                    string codigoDia = RetornarDiaDaSemanaCodigo();
+                    SQL.Clear();
+                    SQL.AppendLine("SELECT Agendamento.* FROM Agendamento ");
+                    SQL.AppendLine("INNER JOIN DiasSemana ON DiasSemana.Id = Agendamento.DiasSemana_Id");
+                    SQL.AppendLine("WHERE DiasSemana.Codigo = @codigo");
+                    listaAgendamento = (await conn.QueryAsync<Agendamento>(SQL.ToString(), new { codigo = codigoDia })).ToList();
                     return listaAgendamento;
                 }
             }
@@ -161,8 +170,9 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
             }
         }
 
-        public string RetornarDiaDaSemanaCodigo(DayOfWeek dayOfWeek)
+        public string RetornarDiaDaSemanaCodigo()
         {
+            DayOfWeek dayOfWeek = DateTime.Now.DayOfWeek;
             switch (dayOfWeek)
             {
                 case DayOfWeek.Sunday:
@@ -207,7 +217,7 @@ namespace Cortes.Repositorio.Repositorios.AgendamentoRepositorio
 
         public async Task<GraficoCortes> PreencherGraficos()
         {
-            var codigo = RetornarDiaDaSemanaCodigo(DateTime.Now.DayOfWeek);
+            var codigo = RetornarDiaDaSemanaCodigo();
             using (var conn = _db.Connection)
             {
                 SQL.Clear();

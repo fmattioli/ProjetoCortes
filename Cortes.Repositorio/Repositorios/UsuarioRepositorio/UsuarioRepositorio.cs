@@ -12,17 +12,15 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        private Generico generico;
+        Generico generico = new Generico();
         private DbSession _db;
         public UsuarioRepositorio(IConfiguration config, DbSession dbSession)
         {
-            generico = new Generico(config);
             _db = dbSession;
         }
 
         public async Task<Usuario> Atualizar(Usuario usuario)
         {
-            await generico.Select("");
             return new Usuario();
         }
 

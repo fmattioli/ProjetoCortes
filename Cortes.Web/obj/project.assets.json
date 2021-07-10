@@ -2660,7 +2660,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Cortes.Dominio": "1.0.0",
-          "Cortes.Infra": "1.0.0"
+          "Cortes.Infra": "1.0.0",
+          "Dapper": "2.0.90"
         },
         "compile": {
           "bin/placeholder/Cortes.Repositorio.dll": {}

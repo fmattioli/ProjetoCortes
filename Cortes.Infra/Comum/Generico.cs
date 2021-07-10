@@ -1,6 +1,4 @@
 ﻿using Cortes.Infra.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,48 +14,7 @@ namespace Cortes.Infra.Comum
     {
         private string conn { get; set; }
         private StringBuilder SQL = new StringBuilder();
-        public Generico(IConfiguration config)
-        {
-            conn = config.GetConnectionString("CortesBD");
-        }
-
-        public async Task RunSQLCommand(string query)
-        {
-            try
-            {
-                // create connection and command
-                using (SqlConnection cn = new SqlConnection(conn))
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    // open connection, execute INSERT, close connection
-                    cn.Open();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
-
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public async Task<DataTable> Select(string query)
-        {
-            DataTable dt = new DataTable();
-            await Task.Run(() =>
-            {
-                using (SqlConnection con = new SqlConnection(conn))
-                {
-
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-
-            });
-            return dt;
-        }
+        
 
         public async Task<string> MontarInsert<T>(T objeto, IList<string> desconsiderarColuna = null, bool plural = true)
         {

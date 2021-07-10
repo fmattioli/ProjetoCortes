@@ -1391,7 +1391,8 @@
       "Cortes.Repositorio/1.0.0": {
         "dependencies": {
           "Cortes.Dominio": "1.0.0",
-          "Cortes.Infra": "1.0.0"
+          "Cortes.Infra": "1.0.0",
+          "Dapper": "2.0.90"
         },
         "runtime": {
           "Cortes.Repositorio.dll": {}
