@@ -14,14 +14,14 @@ namespace Cortes.Repositorio.Repositorios.UsuarioRepositorio
     {
         Generico generico = new Generico();
         private DbSession _db;
-        public UsuarioRepositorio(IConfiguration config, DbSession dbSession)
+        public UsuarioRepositorio(DbSession dbSession)
         {
             _db = dbSession;
         }
 
         public async Task<Usuario> Atualizar(Usuario usuario)
         {
-            return new Usuario();
+            throw new NotImplementedException();
         }
 
         public async Task<Usuario> Criar(Usuario usuario)

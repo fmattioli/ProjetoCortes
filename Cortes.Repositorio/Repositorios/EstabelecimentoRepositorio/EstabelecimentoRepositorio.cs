@@ -25,19 +25,23 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
             _db = dbSession;
         }
 
-        public async Task<bool> ExisteConfiguracao()
+        public async Task ExisteConfiguracao()
         {
             try
             {
                 using (var conn = _db.Connection)
                 {
-                    Estabelecimento estabelecimento = new Estabelecimento();
-                    SQL.AppendLine("SELECT TOP 1 * FROM Estabelecimento");
-                    estabelecimento = await conn.QueryFirstOrDefaultAsync<Estabelecimento>(SQL.ToString());
-                    return (estabelecimento is not null);
+                    SQL.Clear();
+                    SQL.AppendLine("SELECT * FROM Estabelecimento");
+                    Estabelecimento estabelecimento = await conn.QueryFirstOrDefaultAsync<Estabelecimento>(SQL.ToString());
+                    if (estabelecimento is null)
+                    {
+                        await RealizarConfiguracao(null);
+                    }
                 }
+
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -49,10 +53,10 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
             {
                 using (var conn = _db.Connection)
                 {
-                    await conn.ExecuteAsync("delete from Agendamentos");
+                    await conn.ExecuteAsync("delete from Agendamento");
                     await conn.ExecuteAsync("delete from DiasSemana");
                     await conn.ExecuteAsync("delete from Estabelecimento");
-                    
+
                     //Inserir dias
                     DiasSemana diasSemana = new DiasSemana
                     {
@@ -114,13 +118,13 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                         {
                             SQL.Clear();
                             SQL.Append($"SELECT ID FROM DiasSemana WHERE Codigo = @Codigo");
-                            string DiaSemana_Id = await conn.QueryFirstOrDefaultAsync<string>(SQL.ToString(), new {codigo });
+                            string DiaSemana_Id = await conn.QueryFirstOrDefaultAsync<string>(SQL.ToString(), new { codigo });
 
                             SQL.Clear();
                             SQL.Append("SELECT TOP 1 Id FROM Usuarios");
 
                             Usuario usuario = await conn.QueryFirstOrDefaultAsync<Usuario>("SELECT TOP 1 * FROM Usuarios");
-                            
+
                             Agendamento agendamento = new Agendamento
                             {
                                 Endereco = "RUA FLOR DE MADEIRA" + new Random().Next(0, 100),
@@ -141,7 +145,7 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
                     return true;
                 }
             }
-            catch
+            catch (Exception erro)
             {
                 return false;
             }
@@ -151,44 +155,43 @@ namespace Cortes.Repositorio.Repositorios.EstabelecimentoRepositorio
         public async Task<IList<Horario>> Horarios()
         {
             IList<Horario> horariosDisponiveis = new List<Horario>();
-            using (var conn = _db.Connection)
+
+            Estabelecimento estabelecimento = await _db.Connection.QueryFirstOrDefaultAsync<Estabelecimento>(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento()));
+            if (estabelecimento is not null)
             {
-                Estabelecimento estabelecimento = await conn.QueryFirstOrDefaultAsync<Estabelecimento>(await generico.MontarSelectObjeto<Estabelecimento>(new Estabelecimento()));
-                if (estabelecimento is not null)
+                string horarioAbertura = estabelecimento.HoraAbertura;
+                string horarioFechamento = estabelecimento.HoraFechamento;
+                int codigo = 1;
+                horariosDisponiveis.Add(new Horario
                 {
-                    string horarioAbertura = estabelecimento.HoraAbertura;
-                    string horarioFechamento = estabelecimento.HoraFechamento;
-                    int codigo = 1;
+                    Codigo = codigo,
+                    Hora = horarioAbertura
+                });
+
+                int Abertura = int.Parse(horarioAbertura.Replace(":", ""));
+                int Fechamento = int.Parse(horarioFechamento.Replace(":", ""));
+
+                while (Abertura < Fechamento)
+                {
+                    codigo++;
+                    var result = Convert.ToDateTime(horariosDisponiveis[horariosDisponiveis.Count - 1].Hora).AddMinutes(30).ToString("HH:mm");
                     horariosDisponiveis.Add(new Horario
                     {
                         Codigo = codigo,
-                        Hora = horarioAbertura
+                        Hora = result
                     });
 
-                    int Abertura = int.Parse(horarioAbertura.Replace(":", ""));
-                    int Fechamento = int.Parse(horarioFechamento.Replace(":", ""));
-
-                    while (Abertura < Fechamento)
-                    {
-                        codigo++;
-                        var result = Convert.ToDateTime(horariosDisponiveis[horariosDisponiveis.Count - 1].Hora).AddMinutes(30).ToString("HH:mm");
-                        horariosDisponiveis.Add(new Horario
-                        {
-                            Codigo = codigo,
-                            Hora = result
-                        });
-
-                        Abertura = int.Parse(result.Replace(":", ""));
-                    }
-
-                    horariosDisponiveis.Add(new Horario
-                    {
-                        Codigo = codigo++,
-                        Hora = horarioFechamento.ToString()
-                    });
+                    Abertura = int.Parse(result.Replace(":", ""));
                 }
-                return horariosDisponiveis;
+
+                horariosDisponiveis.Add(new Horario
+                {
+                    Codigo = codigo++,
+                    Hora = horarioFechamento.ToString()
+                });
             }
+            return horariosDisponiveis;
+
         }
     }
 }

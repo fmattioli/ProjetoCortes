@@ -9,7 +9,7 @@ namespace Cortes.Services.Interfaces.EstabelecimentoServico
 {
     public interface IEstabelecimentoServico
     {
-        Task<bool> ExisteConfiguracao();
+        Task ExisteConfiguracao();
         Task<bool> RealizarConfiguracao(EstabelecimentoViewModel estabelecimento);
     }
 }

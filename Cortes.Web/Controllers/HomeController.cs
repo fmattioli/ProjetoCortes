@@ -23,11 +23,7 @@ namespace Cortes.Web.Controllers
                 if(usuario != null)
                 {
                     //Validar se existe configurações necessárias!
-                    if (await estabelecimentoServico.ExisteConfiguracao())
-                    {
-                        //Configurações iniciais
-                        await estabelecimentoServico.RealizarConfiguracao(null);
-                    }
+                    await estabelecimentoServico.ExisteConfiguracao();
                     TempData["Token"] = usuario.Token;
                     TempData["Nome"] = usuario.Nome;
                     TempData["Id"] = usuario.Id;

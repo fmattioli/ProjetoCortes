@@ -9,7 +9,7 @@ namespace Cortes.Repositorio.Interfaces.IEstabelecimentoRepositorio
 {
     public interface IEstabelecimentoRepositorio
     {
-        Task<bool> ExisteConfiguracao();
+        Task ExisteConfiguracao();
         Task<bool> RealizarConfiguracao(Estabelecimento estabelecimento);
         Task<IList<Horario>> Horarios();
     }

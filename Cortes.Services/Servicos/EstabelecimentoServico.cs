@@ -17,12 +17,12 @@ namespace Cortes.Services.Servicos
         {
             this.estabelecimentoRepositorio = estabelecimentoRepositorio;
         }
-        public async Task<bool> ExisteConfiguracao()
+        public async Task ExisteConfiguracao()
         {
-            return await estabelecimentoRepositorio.ExisteConfiguracao();
+            await estabelecimentoRepositorio.ExisteConfiguracao();
         }
 
-        public async Task<bool> RealizarConfiguracao(EstabelecimentoViewModel estabelecimento) 
+        public async Task<bool> RealizarConfiguracao(EstabelecimentoViewModel estabelecimento)
         {
             return await estabelecimentoRepositorio.RealizarConfiguracao(null);
         }

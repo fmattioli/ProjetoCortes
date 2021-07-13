@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Cortes.Infra.Comum
 {
-    public class DbSession : IDisposable
+    public class DbSession : IDisposable    
     {
         public IDbConnection Connection { get; }
         public DbSession(IConfiguration configuration)
