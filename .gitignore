@@ -4,4 +4,4 @@
 
 *.dbmdl
 *.jfm
-.config.json
+*.json
