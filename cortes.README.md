@@ -10,3 +10,5 @@ C#;
 JQuery;
 
 
+** Há experimentos feitos com reflection somente para fins de testes ** 
+
